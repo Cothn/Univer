@@ -33,6 +33,9 @@
             this.Edit = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.ObjectBox = new System.Windows.Forms.ComboBox();
+            this.SerializeBox = new System.Windows.Forms.ComboBox();
+            this.SaveButt = new System.Windows.Forms.Button();
+            this.LoadButt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ListView1
@@ -85,12 +88,45 @@
             this.ObjectBox.Size = new System.Drawing.Size(161, 21);
             this.ObjectBox.TabIndex = 4;
             // 
+            // SerializeBox
+            // 
+            this.SerializeBox.FormattingEnabled = true;
+            this.SerializeBox.Location = new System.Drawing.Point(336, 256);
+            this.SerializeBox.Name = "SerializeBox";
+            this.SerializeBox.Size = new System.Drawing.Size(161, 21);
+            this.SerializeBox.TabIndex = 5;
+            // 
+            // SaveButt
+            // 
+            this.SaveButt.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.SaveButt.Location = new System.Drawing.Point(336, 219);
+            this.SaveButt.Name = "SaveButt";
+            this.SaveButt.Size = new System.Drawing.Size(80, 31);
+            this.SaveButt.TabIndex = 6;
+            this.SaveButt.Text = "Save";
+            this.SaveButt.UseVisualStyleBackColor = false;
+            this.SaveButt.Click += new System.EventHandler(this.SaveButt_Click);
+            // 
+            // LoadButt
+            // 
+            this.LoadButt.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LoadButt.Location = new System.Drawing.Point(422, 219);
+            this.LoadButt.Name = "LoadButt";
+            this.LoadButt.Size = new System.Drawing.Size(80, 31);
+            this.LoadButt.TabIndex = 7;
+            this.LoadButt.Text = "Load";
+            this.LoadButt.UseVisualStyleBackColor = false;
+            this.LoadButt.Click += new System.EventHandler(this.LoadButt_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(505, 279);
+            this.Controls.Add(this.LoadButt);
+            this.Controls.Add(this.SaveButt);
+            this.Controls.Add(this.SerializeBox);
             this.Controls.Add(this.ObjectBox);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.Edit);
@@ -113,6 +149,9 @@
         private System.Windows.Forms.Button Edit;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.ComboBox ObjectBox;
+        private System.Windows.Forms.ComboBox SerializeBox;
+        private System.Windows.Forms.Button SaveButt;
+        private System.Windows.Forms.Button LoadButt;
     }
 }
 

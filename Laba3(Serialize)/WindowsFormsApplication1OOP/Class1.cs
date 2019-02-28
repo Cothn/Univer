@@ -6,7 +6,8 @@ using System.Text;
 namespace CRUD_OOP2
 {
     public class UserClass
-    {   public string Identifer;
+    {   
+        public string Identifer;
         public UserClass()
         {
             Identifer = "000";

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+//using Newtonsoft.Json;
 
 namespace CRUD_OOP2
 {
@@ -17,7 +18,7 @@ namespace CRUD_OOP2
             InitializeComponent();
         }
 
-        private List<object> ObjectList = new List<object>();
+        private List<Object> ObjectList = new List<Object>();
 
         // Все пользовательские типы
         /*
@@ -134,6 +135,18 @@ namespace CRUD_OOP2
                 listItem.Text = ObjectType.Name + "  " + ObjSerialNumber;
                 listView.Items.Add(listItem);
             }
+        }
+
+        private void SaveButt_Click(object sender, EventArgs e)
+        {
+            JsonSerial JSerial = new JsonSerial();
+            JSerial.Serialize(ObjectList);
+        }
+
+        private void LoadButt_Click(object sender, EventArgs e)
+        {
+            JsonSerial JSerial = new JsonSerial();
+            ObjectList = (List<Object>)JSerial.DeSerialize();
         }
 
 
