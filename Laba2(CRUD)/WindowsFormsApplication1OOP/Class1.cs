@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WindowsFormsApplication1OOP
+namespace CRUD_OOP2
 {
     public class UserClass
     {   public string Identifer;
@@ -128,6 +128,7 @@ namespace WindowsFormsApplication1OOP
         public int CirkleSpeed_Kol_m;
         public int VertikalSpeed_Km_h;
         public bool weapon;
+
         //private static string TransType = "-Helicopter";
 
         //конструктор
@@ -138,6 +139,7 @@ namespace WindowsFormsApplication1OOP
             CirkleSpeed_Kol_m = 50;
             VertikalSpeed_Km_h = 50;
             weapon = false;
+            NeadOfRanway = false;
         }
 
         //public override string getTransportType()

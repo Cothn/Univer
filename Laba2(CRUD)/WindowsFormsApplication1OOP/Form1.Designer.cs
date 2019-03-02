@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1OOP
+﻿namespace CRUD_OOP2
 {
     partial class Form1
     {

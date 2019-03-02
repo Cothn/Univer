@@ -8,23 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace WindowsFormsApplication1OOP
+namespace CRUD_OOP2
 {
     public partial class Form1 : Form
     {
-        public Form EForm;
-
         public Form1()
         {
             InitializeComponent();
         }
 
-        public List<object> ObjectList = new List<object>();
-
+        private List<object> ObjectList = new List<object>();
 
         // Все пользовательские типы
         /*
-        public List<Type> AllTypeObjList = new List<Type>()
+        private List<Type> AllTypeObjList = new List<Type>()
         {
             typeof(pilot),
             typeof(AirCraft),
@@ -36,7 +33,7 @@ namespace WindowsFormsApplication1OOP
             typeof(CargoCar)
         };
         */
-        public List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
+        private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -84,213 +81,15 @@ namespace WindowsFormsApplication1OOP
             FieldInfo[] fields = Obj.GetType().GetFields(); ;
 
             //Создаем форму редактирования обьекта
-            EForm = CreateForm(Obj, ObjectList);
+            Form EForm = new ObjectForm(Obj, ObjectList);
             EForm.ShowDialog();
             EForm.Dispose();
 
             ListRedraw(ListView1, ObjectList);
         }
 
-        //Форма редактирования обьекта
-        private Form CreateForm(Object Obj, List<Object> ObjectList)
-        {
-            //список всех полей объекта
-            FieldInfo[] fields = Obj.GetType().GetFields(); ;
-
-            //создание пустой формы для редактирования полей
-            Form form = new Form
-            {
-                Text = Obj.GetType().ToString(),
-                Size = new System.Drawing.Size(500, 60 + 25 * (fields.Length + 2))
-            };
-
-            //создание полей
-            for (int i = 0; i < fields.Length; i++)
-            {
-                //надпись содержащая тип и имя поля
-                Label label = new Label
-                {
-                    Location = new Point(15, 25 * (i + 1)),
-                    //Width = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name).Length * 7,
-                    Width = form.Width / 2,
-                    Text = string.Concat(fields[i].Name, " - ", fields[i].FieldType.Name,": ")
-                };
-                form.Controls.Add(label);
-
-                //Создание для типов значений текстовых полей ввода и их заполнение
-                if (((fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum))
-                  || (fields[i].FieldType == typeof(string)))
-                {
-                    TextBox text = new TextBox
-                    {
-                        Name = fields[i].Name,
-                        Location = new Point(15 + label.Width, 25 * (i + 1)),
-                        Width = form.Width - (label.Location.X + label.Width + 30),
-                        Text = fields[i].GetValue(Obj).ToString()
-                    };
-                    form.Controls.Add(text);
-
-                }//Создание выпадающих списков для перечислимых типов
-                else if (fields[i].FieldType.IsEnum)
-                {
-                    ComboBox combobox = new ComboBox
-                    {
-                        Name = fields[i].Name,
-                        SelectionStart = 0,
-                        DropDownStyle = ComboBoxStyle.DropDownList,
-                        Location = new Point(15 + label.Width, 25 * (i + 1)),
-                        Width = form.Width - (label.Location.X + label.Width + 30)
-                    };
-                    combobox.Items.AddRange(fields[i].FieldType.GetEnumNames());
-                    combobox.SelectedIndex = (int)(fields[i].GetValue(Obj));
-                    form.Controls.Add(combobox);
-
-                }
-
-                //Создание выпадающих списков для вложенных членов
-                else if ((!fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum) && (!(fields[i].FieldType == typeof(string))))
-                {
-                    ComboBox combobox = new ComboBox
-                    {
-                        Name = fields[i].Name,
-                        SelectionStart = 0,
-                        DropDownStyle = ComboBoxStyle.DropDownList,
-                        Location = new Point(15 + label.Width, 25 * (i + 1)),
-                        Width = form.Width - (label.Location.X + label.Width + 30)
-                    };
-
-                    //список объектов удовлетворяющих типу поля
-                    List<object> SuitableItems = ObjectList.Where(WField => (WField.GetType() == fields[i].FieldType)).ToList();
-
-                    //заполнение списка
-                    for (int j = 0; j < SuitableItems.Count; j++)
-                    {
-                        var ObjField = SuitableItems[j].GetType().GetField("Identifer");
-                        if (ObjField != null)
-                            combobox.Items.Add(ObjField.GetValue(SuitableItems[j]));
-                    }
-
-                    //Установка связанного обьекта
-                    var buf = fields[i].GetValue(Obj);
-                    int index = -1;
-
-                    if (buf != null)
-                    {
-                        for (int j = 0; j < SuitableItems.Count; j++)
-                        {
-                            if (buf.Equals(SuitableItems[j]))
-                            {
-                                index = j; break;
-                            }
-                        }
-                        combobox.SelectedIndex = index;
-                    }
-
-                    form.Controls.Add(combobox);
-                }
-            }
-
-            //кнопка сохранения
-            Button SaveBut = new Button
-            {
-                Name = "SaveBut",
-                Text = "Save",
-                Location = new Point(form.Width / 2 - (form.Width / 8), (fields.Length + 1) * 25),
-                Width = form.Width / 4,
-                DialogResult = DialogResult.OK,
-            };
-
-            SaveBut.Click += SaveAction;
-            form.Controls.Add(SaveBut);
-
-            return form;
-        }
-
-        //сохранение значений полей обьекта
-        public void SaveAction(object sender, EventArgs e)
-        {
-            int itemNumber;
-
-            if (ListView1.SelectedIndices.Count != 0)
-                itemNumber = ListView1.SelectedIndices[0];
-            else
-                return;
-
-            object Obj = ObjectList[itemNumber];
-            SaveControlsToItems(Obj, ObjectList, EForm);
-        }
-
-        //сохранение значений полей формы в объект 
-        public void SaveControlsToItems(Object Obj, List<Object> ObjList, Form form)
-        {
-            if ((form == null) || (Obj == null) || (ObjList == null))
-                return;
-
-            FieldInfo[] fields = Obj.GetType().GetFields();
-
-            //Преобразование текста в значение
-            foreach (var control in form.Controls.OfType<TextBox>().ToList())
-            {
-                if (fields.ToList().Where(field => field.Name == control.Name).Count() != 0)
-                {
-                    FieldInfo FI = fields.ToList().Where(field => field.Name == control.Name).First();
-                    var FIValye = FI.GetValue(Obj);
-                    try
-                    {
-                        FI.SetValue(Obj, Convert.ChangeType(control.Text, FI.FieldType));
-                    }
-                    catch
-                    {
-                        //Восстанавливаем старое значение
-                        FI.SetValue(Obj, FIValye);
-                        MessageBox.Show(FI.Name + " Error: field text value");
-                    }
-                }
-            }
-
-            //Сохранение значений выпадающих списков
-            foreach (var control in form.Controls.OfType<ComboBox>().ToList())
-            {
-                if (fields.ToList().Where(field => field.Name == control.Name).Count() != 0)
-                {
-                    FieldInfo FI = fields.ToList().Where(field => field.Name == control.Name).First();
-                    var FIValye = FI.GetValue(Obj);
-
-                    if (control.SelectedIndex == -1)
-                        continue;
-
-                    if (FI.FieldType.IsEnum)
-                    {
-                        try
-                        {
-                            FI.SetValue(Obj, control.SelectedIndex);
-                        }
-                        catch
-                        {
-                            FI.SetValue(Obj, FIValye);
-                            MessageBox.Show(FI.Name + " Error: field enum value");
-                        }
-                    }
-                    else
-                    {
-                        List<object> SuitableItems = ObjList.Where(sitem => (sitem.GetType() == FI.FieldType)).ToList();
-                        try
-                        {
-                            FI.SetValue(Obj, SuitableItems[control.SelectedIndex]);
-                        }
-                        catch
-                        {
-                            FI.SetValue(Obj, FIValye);
-                            MessageBox.Show(FI.Name + " Error: field object value");
-                        }
-                    }
-                }
-            }
-        }
-
         private void Delete_Click(object sender, EventArgs e)
         {
-
             if ((ListView1.SelectedIndices.Count != 0) && (ListView1.SelectedIndices[0] < ObjectList.Count))
             {
                 int itemNum = ListView1.SelectedIndices[0];
@@ -316,6 +115,7 @@ namespace WindowsFormsApplication1OOP
             }
             ListRedraw(ListView1, ObjectList);
         }
+
         //Перерисовка списка объектов в соответсвии со списком обьектов
         public void ListRedraw(ListView listView, List<Object> ObjectList)
         {
