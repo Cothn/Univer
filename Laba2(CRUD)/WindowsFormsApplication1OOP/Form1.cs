@@ -74,18 +74,35 @@ namespace CRUD_OOP2
             else
                 return;
 
-            //Получаем редактируемый объект
-            object Obj = ObjectList[itemNum];
-
-            //Получаем список всех полей объекта
-            FieldInfo[] fields = Obj.GetType().GetFields(); ;
-
             //Создаем форму редактирования обьекта
-            Form EForm = new ObjectForm(Obj, ObjectList);
+            Form EForm = new ObjectForm(ObjectList[itemNum], ObjectList);
             EForm.ShowDialog();
             EForm.Dispose();
 
             ListRedraw(ListView1, ObjectList);
+        }
+
+        // метод удаления обьектов
+        private void Delete_Action(Object DelObject, List<object> ObjectList)
+        {
+            //список объектов которые могут использовать удаляемый обьект
+            var ownerList = ObjectList.Where(item => (item.GetType().GetFields().Where(field => (field.FieldType == DelObject.GetType()))).ToList().Count > 0);
+            foreach (var owner in ownerList)
+            {
+                foreach (var field in owner.GetType().GetFields().Where(field => (field.FieldType == DelObject.GetType())).ToList())
+                {
+                    if (field.GetValue(owner) != null)
+                    {
+                        if (field.GetValue(owner).Equals(DelObject))
+                        {
+                            field.SetValue(owner, null);
+                        }
+                    }
+                }
+            }
+
+            //Непосредственное удаление обьекта
+            ObjectList.Remove(DelObject);
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -94,24 +111,7 @@ namespace CRUD_OOP2
             {
                 int itemNum = ListView1.SelectedIndices[0];
 
-                //список объектов которые могут использовать удаляемый обьект
-                var ownerList = ObjectList.Where(item => (item.GetType().GetFields().Where(field => (field.FieldType == ObjectList[itemNum].GetType()))).ToList().Count > 0);
-                foreach (var owner in ownerList)
-                {
-                    foreach (var field in owner.GetType().GetFields().Where(field => (field.FieldType == ObjectList[itemNum].GetType())).ToList())
-                    {
-                        if (field.GetValue(owner) != null)
-                        {
-                            if (field.GetValue(owner).Equals(ObjectList[itemNum]))
-                            {
-                                field.SetValue(owner, null);
-                            }
-                        }
-                    }
-                }
-
-                //Непосредственное удаление обьекта
-                ObjectList.Remove(ObjectList[itemNum]);
+                Delete_Action(ObjectList[itemNum], ObjectList);
             }
             ListRedraw(ListView1, ObjectList);
         }
