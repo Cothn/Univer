@@ -1,0 +1,7 @@
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.Form1.resources
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.Properties.Resources.resources
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.GenerateResource.Cache
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\bin\Debug\WindowsFormsApplication1OOP.exe
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\bin\Debug\WindowsFormsApplication1OOP.pdb
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.exe
+D:\RepositHub\Univer\WindowsFormsApplication1OOP\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.pdb
