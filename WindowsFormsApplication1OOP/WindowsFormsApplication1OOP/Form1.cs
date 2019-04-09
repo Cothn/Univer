@@ -159,7 +159,7 @@ namespace WindowsFormsApplication1OOP
                     };
 
                     //список объектов удовлетворяющих типу поля
-                    List<object> SuitableItems = ObjectList.Where(sitem => ((sitem.GetType() == fields[i].FieldType) || (sitem.GetType().BaseType == fields[i].FieldType))).ToList();
+                    List<object> SuitableItems = ObjectList.Where(WField => (WField.GetType() == fields[i].FieldType)).ToList();
 
                     //заполнение списка
                     for (int j = 0; j < SuitableItems.Count; j++)
@@ -169,6 +169,7 @@ namespace WindowsFormsApplication1OOP
                             combobox.Items.Add(ObjField.GetValue(SuitableItems[j]));
                     }
 
+                    //Установка связанного обьекта
                     var buf = fields[i].GetValue(Obj);
                     int index = -1;
 
@@ -204,7 +205,50 @@ namespace WindowsFormsApplication1OOP
             return form;
         }
 
+        //сохранение значений полей обьекта
+        public void SaveAction(object sender, EventArgs e)
+        {
+            int itemNumber;
 
+            if (ListView1.SelectedIndices.Count != 0)
+                itemNumber = ListView1.SelectedIndices[0];
+            else
+                return;
+
+            object Obj = ObjectList[itemNumber];
+            SaveControlsToItems(Obj, ObjectList, EForm);
+        }
+
+        //сохранение значений полей формы в объект 
+        public void SaveControlsToItems(Object Obj, List<Object> ObjList, Form form)
+        {
+            if ((form == null) || (Obj == null) || (ObjList == null))
+                return;
+
+            FieldInfo[] fields = Obj.GetType().GetFields();
+
+            //Преобразование текста в значение
+            foreach (var control in form.Controls.OfType<TextBox>().ToList())
+            {
+                if (fields.ToList().Where(field => field.Name == control.Name).Count() != 0)
+                {
+                    FieldInfo FI = fields.ToList().Where(field => field.Name == control.Name).First();
+                    var FIValye = FI.GetValue(Obj);
+                    try
+                    {
+                        FI.SetValue(Obj, Convert.ChangeType(control.Text, FI.FieldType));
+                    }
+                    catch
+                    {
+                        //Восстанавливаем старое значение
+                        FI.SetValue(Obj, FIValye);
+                        MessageBox.Show(FI.Name + " Error: field value");
+                    }
+                }
+            }
+
+
+        }
 
         private void Delete_Click(object sender, EventArgs e)
         {
