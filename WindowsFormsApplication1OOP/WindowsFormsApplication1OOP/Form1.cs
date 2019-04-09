@@ -242,12 +242,49 @@ namespace WindowsFormsApplication1OOP
                     {
                         //Восстанавливаем старое значение
                         FI.SetValue(Obj, FIValye);
-                        MessageBox.Show(FI.Name + " Error: field value");
+                        MessageBox.Show(FI.Name + " Error: field text value");
                     }
                 }
             }
 
+            //Сохранение значений выпадающих списков
+            foreach (var control in form.Controls.OfType<ComboBox>().ToList())
+            {
+                if (fields.ToList().Where(field => field.Name == control.Name).Count() != 0)
+                {
+                    FieldInfo FI = fields.ToList().Where(field => field.Name == control.Name).First();
+                    var FIValye = FI.GetValue(Obj);
 
+                    if (control.SelectedIndex == -1)
+                        continue;
+
+                    if (FI.FieldType.IsEnum)
+                    {
+                        try
+                        {
+                            FI.SetValue(Obj, control.SelectedIndex);
+                        }
+                        catch
+                        {
+                            FI.SetValue(Obj, FIValye);
+                            MessageBox.Show(FI.Name + " Error: field enum value");
+                        }
+                    }
+                    else
+                    {
+                        List<object> SuitableItems = ObjList.Where(sitem => (sitem.GetType() == FI.FieldType)).ToList();
+                        try
+                        {
+                            FI.SetValue(Obj, SuitableItems[control.SelectedIndex]);
+                        }
+                        catch
+                        {
+                            FI.SetValue(Obj, FIValye);
+                            MessageBox.Show(FI.Name + " Error: field object value");
+                        }
+                    }
+                }
+            }
         }
 
         private void Delete_Click(object sender, EventArgs e)
