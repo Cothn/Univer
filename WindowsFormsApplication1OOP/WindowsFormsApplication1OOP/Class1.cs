@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1OOP
         //конструктор 0
         public Transport()
         {
+            SerialNumber = "XXX";
         }
 
         public int getNumOfPlaces()
@@ -38,24 +39,23 @@ namespace WindowsFormsApplication1OOP
         public bool NeadOfRanway;
         public int minFlightHeight;
         public int MaxDistance;
-        private static string TransType = "Air";
+        //private static string TransType = "Air";
 
         //конструктор
         public AirTransport()
         {
 
         }
-
-        public static string getTransportType()
-        {
-            return TransType;
-        }
+        //public static string getTransportType()
+        //{
+            //    return TransType;
+        //}
     }
 
     public class pilotRq
     {
 
-        private int MinkolOfarraiv;
+        private int MinKolOfArraiv;
         private int MinHoursOfFlight;
         private string PilotClass;
         public pilotRq()
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1OOP
         }
         public int getMinKolOfArraiv()
         {
-            return MinkolOfarraiv;
+            return MinKolOfArraiv;
         }
         public int getMinHoursOfFlight()
         {
@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1OOP
         }
         public void setMinKolOfArraiv(int Arraiv)
         {
-            MinkolOfarraiv = Arraiv;
+            MinKolOfArraiv = Arraiv;
         }
         public void setMinHoursOfFlight(int Hour)
         {
@@ -91,13 +91,15 @@ namespace WindowsFormsApplication1OOP
     public class pilot
     {
         public string name;
-        public int kolOfarraiv;
-        public int hoursOfFlight;
+        public int KolOfArraiv;
+        public int HoursOfFlight;
         public string PilotClass;
         public string SerialNumber;
         public pilot()
         {
-
+            name = "Иван";
+            PilotClass = "A1";
+            SerialNumber = "XXX";
         }
     }
 
@@ -109,7 +111,7 @@ namespace WindowsFormsApplication1OOP
         public int maxFlightHeight;
         public int HeigAclerationSpeed;
         public int SpeedAclerationTime; //time to 100km/h
-        private static string TransType = "-AirCraft";
+        //private static string TransType = "-AirCraft";
 
         //конструктор
         public AirCraft()
@@ -125,10 +127,10 @@ namespace WindowsFormsApplication1OOP
             maxFlightHeight = FlightHeight;
         }
 
-        public static string getTransportType()
-        {
-            return AirTransport.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return AirTransport.getTransportType() + TransType;
+        //}
         public bool Podh()
         {
             return true;
@@ -148,10 +150,10 @@ namespace WindowsFormsApplication1OOP
 
         }
 
-        public static string getTransportType()
-        {
-            return AirTransport.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return AirTransport.getTransportType() + TransType;
+        //}
         public int getLiftingSpeed()
         {
             return LiftingSpeed;
@@ -177,16 +179,16 @@ namespace WindowsFormsApplication1OOP
         public float DeadweightSize;
         public int Draught;
         public int Crew;
-        private static string TransType = "Water";
+        // private static string TransType = "Water";
         public WaterTransport()
         {
 
         }
 
-        public static string getTransportType()
-        {
-            return TransType;
-        }
+        //public static string getTransportType()
+        //{
+            //    return TransType;
+        //}
         public float getSizeOfShip()
         {
             return base.dlin * base.width * base.heigh;
@@ -198,23 +200,23 @@ namespace WindowsFormsApplication1OOP
         public int SailsArea;
         public byte WindAngle;
         public int MastHeigh;
-        private static string TransType = "-SailsShip";
+        // private static string TransType = "-SailsShip";
 
         //конструктор
         public SailsShip()
         {
 
         }
-        public static string getTransportType()
-        {
-            return WaterTransport.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return WaterTransport.getTransportType() + TransType;
+        //}
     }
     public class MotorShip : WaterTransport
     {
         public int MoterPower;
         public int FuelConsumption;
-        private static string TransType = "-MotorShip";
+        //private static string TransType = "-MotorShip";
 
         //конструктор
         public MotorShip()
@@ -227,17 +229,18 @@ namespace WindowsFormsApplication1OOP
     {
         public int NumOfWheel;
         public string FuelType;
-        private static string TransType = "Land";
+        //private static string TransType = "Land";
 
         //конструктор 0
         public LandTransport()
         {
+            FuelType = "Бензин";
         }
 
-        public static string getTransportType()
-        {
-            return TransType;
-        }
+        //public static string getTransportType()
+        //{
+            //    return TransType;
+        //}
         public string getFuelType()
         {
             return FuelType;
@@ -248,15 +251,15 @@ namespace WindowsFormsApplication1OOP
     {
         public int kolOfRailwayAxle;
         private int MaxTimeOfJob;
-        private static string TransType = "-Train";
+        //private static string TransType = "-Train";
         public Train()
         {
 
         }
-        public static string getTransportType()
-        {
-            return LandTransport.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return LandTransport.getTransportType() + TransType;
+        //}
         public float getSizeOfTrain()
         {
             return base.dlin * base.width * base.heigh;
@@ -277,29 +280,29 @@ namespace WindowsFormsApplication1OOP
         public int WheelDiameter;
         public int MoterPower;
         public int FuelConsumption;
-        private static string TransType = "-Car";
+        //private static string TransType = "-Car";
         public Car()
         {
 
         }
-        public static string getTransportType()
-        {
-            return LandTransport.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return LandTransport.getTransportType() + TransType;
+        //}
     }
 
     public class RacingCar : Car
     {
         public int TimeSpidAcleration;
-        private static string TransType = "-Racing";
+        //private static string TransType = "-Racing";
         public RacingCar()
         {
 
         }
-        public static string getTransportType()
-        {
-            return Car.getTransportType() + TransType;
-        }
+        //public static string getTransportType()
+        //{
+        //    return Car.getTransportType() + TransType;
+        //}
     }
 
     public class CargoCar : Car
@@ -307,15 +310,15 @@ namespace WindowsFormsApplication1OOP
         public bool Pricep;
         public int MaxPricepWEigh;
         public int MaxDistance;
-        private static string TransType = "-Cargo";
+        //private static string TransType = "-Cargo";
         public CargoCar()
         {
 
         }
-        public static string getTransportType()
-        {
-            return WaterTransport.getTransportType() + TransType;
-        }
+        ///public static string getTransportType()
+        //{
+        //    return WaterTransport.getTransportType() + TransType;
+        //}
         public float getSize()
         {
             return base.dlin * base.width * base.heigh;

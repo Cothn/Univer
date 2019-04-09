@@ -12,6 +12,8 @@ namespace WindowsFormsApplication1OOP
 {
     public partial class Form1 : Form
     {
+        public Form EForm;
+
         public Form1()
         {
             InitializeComponent();
@@ -81,12 +83,126 @@ namespace WindowsFormsApplication1OOP
             FieldInfo[] fields = Obj.GetType().GetFields(); ;
 
             //Создаем форму редактирования обьекта
-            //СForm = CreateForm(Obj, ObjectList);
-            //СForm.ShowDialog();
-            //СForm.Dispose();
+            EForm = CreateForm(Obj, ObjectList);
+            EForm.ShowDialog();
+            EForm.Dispose();
 
             ListRedraw(ListView1, ObjectList);
         }
+
+        //Форма редактирования обьекта
+        private Form CreateForm(Object Obj, List<Object> ObjectList)
+        {
+            //список всех полей объекта
+            FieldInfo[] fields = Obj.GetType().GetFields(); ;
+
+            //создание пустой формы для редактирования полей
+            Form form = new Form
+            {
+                Text = Obj.GetType().ToString(),
+                Size = new System.Drawing.Size(400, 60 + 25 * (fields.Length + 2))
+            };
+
+            //создание полей
+            for (int i = 0; i < fields.Length; i++)
+            {
+                //надпись содержащая тип и имя поля
+                Label label = new Label
+                {
+                    Location = new Point(15, 25 * (i + 1)),
+                    Width = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name).Length * 7,
+                    Text = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name)
+                };
+                form.Controls.Add(label);
+
+                //Создание для типов значений текстовых полей ввода и их заполнение
+                if (((fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum))
+                  || (fields[i].FieldType == typeof(string)))
+                {
+                    TextBox text = new TextBox
+                    {
+                        Name = fields[i].Name,
+                        Location = new Point(15 + label.Width, 25 * (i + 1)),
+                        Width = form.Width - (label.Location.X + label.Width + 30),
+                        Text = fields[i].GetValue(Obj).ToString()
+                    };
+                    form.Controls.Add(text);
+
+                }//Создание выпадающих списков для перечислимых типов
+                else if (fields[i].FieldType.IsEnum)
+                {
+                    ComboBox combobox = new ComboBox
+                    {
+                        Name = fields[i].Name,
+                        SelectionStart = 0,
+                        DropDownStyle = ComboBoxStyle.DropDownList,
+                        Location = new Point(15 + label.Width, 25 * (i + 1)),
+                        Width = form.Width - (label.Location.X + label.Width + 30)
+                    };
+                    combobox.Items.AddRange(fields[i].FieldType.GetEnumNames());
+                    combobox.SelectedIndex = (int)(fields[i].GetValue(Obj));
+                    form.Controls.Add(combobox);
+
+                }
+
+                /*//Создание выпадающих списков для вложенных членов
+                else if ((!fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum) && (!(fields[i].FieldType == typeof(string))))
+                {
+                    ComboBox combobox = new ComboBox
+                    {
+                        Name = fields[i].Name,
+                        SelectionStart = 0,
+                        DropDownStyle = ComboBoxStyle.DropDownList,
+                        Location = new Point(15 + label.Width, 25 * (i + 1)),
+                        Width = form.Width - (label.Location.X + label.Width + 30)
+                    };
+
+                    //список объектов удовлетворяющих типу поля
+                    List<object> suitableItems = itemList.Where(sitem => ((sitem.GetType() == fields[i].FieldType) || (sitem.GetType().BaseType == fields[i].FieldType))).ToList();
+
+                    for (int j = 0; j < suitableItems.Count; j++)
+                    {
+                        var nameField = suitableItems[0].GetType().GetField("name");
+                        if (nameField != null)
+                            combobox.Items.Add(nameField.GetValue(suitableItems[j]));
+                    }
+
+                    var buf = fields[i].GetValue(Obj);
+                    int index = -1;
+
+                    if (buf != null)
+                    {
+                        for (int j = 0; j < suitableItems.Count; j++)
+                        {
+                            if (buf.Equals(suitableItems[j]))
+                            {
+                                index = j; break;
+                            }
+                        }
+                        combobox.SelectedIndex = index;
+                    }
+
+                    form.Controls.Add(combobox);
+                }*/
+            }
+
+            //кнопка сохранения
+            Button btn = new Button
+            {
+                Name = "btnSave",
+                Text = "Save",
+                Location = new Point(form.Width / 2 - (form.Width / 8), (fields.Length + 1) * 25),
+                Width = form.Width / 4,
+                DialogResult = DialogResult.OK,
+            };
+
+            //btn.Click += SaveControls;
+            form.Controls.Add(btn);
+
+            return form;
+        }
+
+
 
         private void Delete_Click(object sender, EventArgs e)
         {
