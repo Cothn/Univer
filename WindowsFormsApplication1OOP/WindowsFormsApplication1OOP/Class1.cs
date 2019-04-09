@@ -52,60 +52,41 @@ namespace WindowsFormsApplication1OOP
         //}
     }
 
-    public class pilotRq
-    {
+    /*  public class pilotRq
+      {
 
-        private int MinKolOfArraiv;
-        private int MinHoursOfFlight;
-        private string PilotClass;
-        public pilotRq()
-        {
+          public int MinKolOfArraiv;
+          public int MinHoursOfFlight;
+          public string RequiredPilotClass;
+          public pilotRq()
+          {
 
-        }
-        public int getMinKolOfArraiv()
-        {
-            return MinKolOfArraiv;
-        }
-        public int getMinHoursOfFlight()
-        {
-            return MinHoursOfFlight;
-        }
-        public string getPilotClass()
-        {
-            return PilotClass;
-        }
-        public void setMinKolOfArraiv(int Arraiv)
-        {
-            MinKolOfArraiv = Arraiv;
-        }
-        public void setMinHoursOfFlight(int Hour)
-        {
-            MinHoursOfFlight = Hour;
-        }
-        public void setPilotClass(string Cl)
-        {
-            PilotClass = Cl;
-        }
-    }
+          }
+      } */
 
+
+    public enum TPilotClass { SPL = 0, PPL = 1, CPL, ATPL, CFI};
     public class pilot
     {
         public string name;
         public int KolOfArraiv;
         public int HoursOfFlight;
-        public string PilotClass;
+        public TPilotClass PilotClass;
         public string SerialNumber;
         public pilot()
         {
             name = "Иван";
-            PilotClass = "A1";
+            PilotClass = (TPilotClass)0;
             SerialNumber = "XXX";
         }
     }
 
     public class AirCraft : AirTransport
     {
-        public pilotRq PilotReq;
+        //public pilotRq PilotReq;
+        public int PilotMinKolOfArraiv;
+        public int PilotMinHoursOfFlight;
+        public TPilotClass RequiredPilotClass;
         public pilot Pilot;
         public int MaxVerticalAngle;
         public int maxFlightHeight;
@@ -116,7 +97,7 @@ namespace WindowsFormsApplication1OOP
         //конструктор
         public AirCraft()
         {
-
+            RequiredPilotClass = (TPilotClass)0;
         }
         public int getMaxFlightHeight()
         {

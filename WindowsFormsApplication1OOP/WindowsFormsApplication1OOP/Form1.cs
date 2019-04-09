@@ -100,7 +100,7 @@ namespace WindowsFormsApplication1OOP
             Form form = new Form
             {
                 Text = Obj.GetType().ToString(),
-                Size = new System.Drawing.Size(400, 60 + 25 * (fields.Length + 2))
+                Size = new System.Drawing.Size(500, 60 + 25 * (fields.Length + 2))
             };
 
             //создание полей
@@ -110,7 +110,8 @@ namespace WindowsFormsApplication1OOP
                 Label label = new Label
                 {
                     Location = new Point(15, 25 * (i + 1)),
-                    Width = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name).Length * 7,
+                    //Width = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name).Length * 7,
+                    Width = form.Width / 2,
                     Text = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name)
                 };
                 form.Controls.Add(label);
@@ -145,7 +146,7 @@ namespace WindowsFormsApplication1OOP
 
                 }
 
-                /*//Создание выпадающих списков для вложенных членов
+                //Создание выпадающих списков для вложенных членов
                 else if ((!fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum) && (!(fields[i].FieldType == typeof(string))))
                 {
                     ComboBox combobox = new ComboBox
@@ -158,13 +159,14 @@ namespace WindowsFormsApplication1OOP
                     };
 
                     //список объектов удовлетворяющих типу поля
-                    List<object> suitableItems = itemList.Where(sitem => ((sitem.GetType() == fields[i].FieldType) || (sitem.GetType().BaseType == fields[i].FieldType))).ToList();
+                    List<object> SuitableItems = ObjectList.Where(sitem => ((sitem.GetType() == fields[i].FieldType) || (sitem.GetType().BaseType == fields[i].FieldType))).ToList();
 
-                    for (int j = 0; j < suitableItems.Count; j++)
+                    //заполнение списка
+                    for (int j = 0; j < SuitableItems.Count; j++)
                     {
-                        var nameField = suitableItems[0].GetType().GetField("name");
-                        if (nameField != null)
-                            combobox.Items.Add(nameField.GetValue(suitableItems[j]));
+                        var ObjField = SuitableItems[j].GetType().GetField("SerialNumber");
+                        if (ObjField != null)
+                            combobox.Items.Add(ObjField.GetValue(SuitableItems[j]));
                     }
 
                     var buf = fields[i].GetValue(Obj);
@@ -172,9 +174,9 @@ namespace WindowsFormsApplication1OOP
 
                     if (buf != null)
                     {
-                        for (int j = 0; j < suitableItems.Count; j++)
+                        for (int j = 0; j < SuitableItems.Count; j++)
                         {
-                            if (buf.Equals(suitableItems[j]))
+                            if (buf.Equals(SuitableItems[j]))
                             {
                                 index = j; break;
                             }
@@ -183,21 +185,21 @@ namespace WindowsFormsApplication1OOP
                     }
 
                     form.Controls.Add(combobox);
-                }*/
+                }
             }
 
             //кнопка сохранения
-            Button btn = new Button
+            Button SaveBut = new Button
             {
-                Name = "btnSave",
+                Name = "SaveBut",
                 Text = "Save",
                 Location = new Point(form.Width / 2 - (form.Width / 8), (fields.Length + 1) * 25),
                 Width = form.Width / 4,
                 DialogResult = DialogResult.OK,
             };
 
-            //btn.Click += SaveControls;
-            form.Controls.Add(btn);
+            SaveBut.Click += SaveAction;
+            form.Controls.Add(SaveBut);
 
             return form;
         }
