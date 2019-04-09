@@ -225,26 +225,24 @@ namespace WindowsFormsApplication1OOP
         }
 
     }
+
+    public enum TFuelType { Craft = 0, Аи_80 = 1, Аи_92, Аи_95, Аи_98, ДТ, Газ, Электричество};
     public class LandTransport : Transport
     {
         public int NumOfWheel;
-        public string FuelType;
+        public TFuelType FuelType;
         //private static string TransType = "Land";
 
         //конструктор 0
         public LandTransport()
         {
-            FuelType = "Бензин";
+            FuelType = (TFuelType)0;
         }
 
         //public static string getTransportType()
         //{
             //    return TransType;
         //}
-        public string getFuelType()
-        {
-            return FuelType;
-        }
     }
 
     public class Train : LandTransport
@@ -254,7 +252,7 @@ namespace WindowsFormsApplication1OOP
         //private static string TransType = "-Train";
         public Train()
         {
-
+            FuelType = (TFuelType)7;
         }
         //public static string getTransportType()
         //{
