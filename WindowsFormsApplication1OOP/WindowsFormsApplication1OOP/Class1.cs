@@ -87,7 +87,8 @@ namespace WindowsFormsApplication1OOP
         public int PilotMinKolOfArraiv;
         public int PilotMinHoursOfFlight;
         public TPilotClass RequiredPilotClass;
-        public pilot Pilot;
+        public pilot FirstPilot;
+        public pilot Copilot;
         public int MaxVerticalAngle;
         public int maxFlightHeight;
         public int HeigAclerationSpeed;

@@ -298,6 +298,30 @@ namespace WindowsFormsApplication1OOP
         private void Delete_Click(object sender, EventArgs e)
         {
 
+            if ((ListView1.SelectedIndices.Count != 0) && (ListView1.SelectedIndices[0] < ObjectList.Count))
+            {
+                int itemNum = ListView1.SelectedIndices[0];
+
+                //список объектов которые могут использовать удаляемый обьект
+                var ownerList = ObjectList.Where(item => (item.GetType().GetFields().Where(field => (field.FieldType == ObjectList[itemNum].GetType()))).ToList().Count > 0);
+                foreach (var owner in ownerList)
+                {
+                    foreach (var field in owner.GetType().GetFields().Where(field => (field.FieldType == ObjectList[itemNum].GetType())).ToList())
+                    {
+                        if (field.GetValue(owner) != null)
+                        {
+                            if (field.GetValue(owner).Equals(ObjectList[itemNum]))
+                            {
+                                field.SetValue(owner, null);
+                            }
+                        }
+                    }
+                }
+
+                //Непосредственное удаление обьекта
+                ObjectList.Remove(ObjectList[itemNum]);
+            }
+            ListRedraw(ListView1, ObjectList);
         }
         //Перерисовка списка объектов в соответсвии со списком обьектов
         public void ListRedraw(ListView listView, List<Object> ObjectList)
