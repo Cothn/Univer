@@ -64,7 +64,15 @@ namespace WindowsFormsApplication1OOP
 
         private void Create_Click(object sender, EventArgs e)
         {
-            
+            ObjectList.Add(MyCreatorList[ObjectBox.SelectedIndex].Create());
+            ListRedraw(ListView1, ObjectList);
+            ListViewItem LVI = ListView1.Items[(ObjectList.Count - 1)];
+            if (LVI != null)
+            {
+                ListView1.Focus();
+                LVI.Selected = true;
+                Edit.PerformClick();
+            }
         }
 
         private void Edit_Click(object sender, EventArgs e)
