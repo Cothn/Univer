@@ -5,9 +5,9 @@ using System.Text;
 
 namespace WindowsFormsApplication1OOP
 {
-    public abstract class AllClass
-    { }
-    public class Transport : AllClass
+    public abstract class AllUserClass
+    {}
+    public class Transport : AllUserClass
     {
         public string SerialNumber;
         public int AvrSpeed;
@@ -59,21 +59,8 @@ namespace WindowsFormsApplication1OOP
         }
     }
 
-    /*  public class pilotRq
-      {
-
-          public int MinKolOfArraiv;
-          public int MinHoursOfFlight;
-          public string RequiredPilotClass;
-          public pilotRq()
-          {
-
-          }
-      } */
-
-
     public enum TPilotClass { SPL = 0, PPL = 1, CPL, ATPL, CFI};
-    public class pilot : AllClass
+    public class pilot : AllUserClass
     {
         public string name;
         public int KolOfArraiv;
@@ -312,64 +299,4 @@ namespace WindowsFormsApplication1OOP
         }
     } 
 
-   /* public interface MyCreator
-    {
-        object Create();
-    }
-    public class pilotCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new pilot();
-        }
-    }
-    public class AirCraftCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new AirCraft();
-        }
-    }
-    public class HelicopterCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new Helicopter();
-        }
-    }
-    public class SailsShipCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new SailsShip();
-        }
-    }
-    public class MotorShipCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new MotorShip();
-        }
-    }
-    public class TrainCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new Train();
-        }
-    }
-    public class RacingCarCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new RacingCar();
-        }
-    }
-    public class CargoCarCreator : MyCreator
-    {
-        public object Create()
-        {
-            return new CargoCar();
-        }
-    }*/
 }

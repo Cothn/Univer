@@ -35,45 +35,19 @@ namespace WindowsFormsApplication1OOP
             {SerialNumber = "T0" },
             new RacingCar()
             {SerialNumber = "RC0" },
-            //new CargoCar()
-            //{SerialNumber = "CC0" }
+            new CargoCar()
+            {SerialNumber = "CC0" }
         };
 
-        public IEnumerable<Type> AllObjList = Assembly.GetAssembly(typeof(AllClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(AllClass)));
-
-        /*public List<MyCreator> MyCreatorList = new List<MyCreator>() {
-            new AirCraftCreator(),
-            new HelicopterCreator(),
-            new SailsShipCreator(),
-            new MotorShipCreator(),
-            new TrainCreator(),
-            new RacingCarCreator(),
-            new CargoCarCreator(),
-            new pilotCreator()
-        };*/
+        // Все пользовательские типы
+        public IEnumerable<Type> AllObjEnum = Assembly.GetAssembly(typeof(AllUserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(AllUserClass)));
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            //foreach (Type itm in AllObjList)
-            //{
-            //    var listItem = new ListViewItem();
-            //    listItem.Text = itm.Name;
-            //    ListView1.Items.Add(listItem);
-            //}
-
-            //List<Type> MyCreatorList = AllObjList.ToList();
-            //var listItem1 = new ListViewItem();
-            //ConstructorInfo CI = MyCreatorList[3].GetConstructor(Type.EmptyTypes);
-            //object obj1 = CI.Invoke(Type.EmptyTypes);
-            //listItem1.Text = CI.ToString();
-            //ListView1.Items.Add(listItem1);
-
             ListView1.MultiSelect = false;
 
-
             // Создаем список выбора обьекта
-            foreach (var obj in AllObjList)
+            foreach (var obj in AllObjEnum)
                 ObjectBox.Items.Add(obj.Name);
             ObjectBox.SelectedIndex = 0;
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -83,8 +57,9 @@ namespace WindowsFormsApplication1OOP
 
         private void Create_Click(object sender, EventArgs e)
         {
-            List<Type> MyCreatorList = AllObjList.ToList();
-            ObjectList.Add(MyCreatorList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
+            List<Type> AllObjList = AllObjEnum.ToList();
+            //Вызов конструктора выбранного обьекта
+            ObjectList.Add(AllObjList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
             ListRedraw(ListView1, ObjectList);
             ListViewItem LVI = ListView1.Items[(ObjectList.Count - 1)];
             if (LVI != null)
