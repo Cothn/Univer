@@ -5,7 +5,9 @@ using System.Text;
 
 namespace WindowsFormsApplication1OOP
 {
-    public class Transport
+    public abstract class AllClass
+    { }
+    public class Transport : AllClass
     {
         public string SerialNumber;
         public int AvrSpeed;
@@ -71,7 +73,7 @@ namespace WindowsFormsApplication1OOP
 
 
     public enum TPilotClass { SPL = 0, PPL = 1, CPL, ATPL, CFI};
-    public class pilot
+    public class pilot : AllClass
     {
         public string name;
         public int KolOfArraiv;
@@ -308,9 +310,9 @@ namespace WindowsFormsApplication1OOP
         {
             return base.dlin * base.width * base.heigh;
         }
-    }
+    } 
 
-    public interface MyCreator
+   /* public interface MyCreator
     {
         object Create();
     }
@@ -369,5 +371,5 @@ namespace WindowsFormsApplication1OOP
         {
             return new CargoCar();
         }
-    }
+    }*/
 }
