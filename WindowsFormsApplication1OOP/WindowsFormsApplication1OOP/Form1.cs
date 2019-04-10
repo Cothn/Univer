@@ -40,14 +40,14 @@ namespace WindowsFormsApplication1OOP
         };
 
         // Все пользовательские типы
-        public IEnumerable<Type> AllObjEnum = Assembly.GetAssembly(typeof(AllUserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(AllUserClass)));
+        public List<Type> AllObjList = Assembly.GetAssembly(typeof(AllUserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(AllUserClass))).ToList();
 
         private void Form1_Load(object sender, EventArgs e)
         {
             ListView1.MultiSelect = false;
 
             // Создаем список выбора обьекта
-            foreach (var obj in AllObjEnum)
+            foreach (var obj in AllObjList)
                 ObjectBox.Items.Add(obj.Name);
             ObjectBox.SelectedIndex = 0;
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -57,7 +57,6 @@ namespace WindowsFormsApplication1OOP
 
         private void Create_Click(object sender, EventArgs e)
         {
-            List<Type> AllObjList = AllObjEnum.ToList();
             //Вызов конструктора выбранного обьекта
             ObjectList.Add(AllObjList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
             ListRedraw(ListView1, ObjectList);
@@ -115,7 +114,7 @@ namespace WindowsFormsApplication1OOP
                     Location = new Point(15, 25 * (i + 1)),
                     //Width = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name).Length * 7,
                     Width = form.Width / 2,
-                    Text = string.Concat(fields[i].FieldType.Name, " ", fields[i].Name)
+                    Text = string.Concat(fields[i].Name, " - ", fields[i].FieldType.Name,": ")
                 };
                 form.Controls.Add(label);
 

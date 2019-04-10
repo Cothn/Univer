@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1OOP
     public class Transport : AllUserClass
     {
         public string SerialNumber;
+        public string Name;
         public int AvrSpeed;
         public int Weight;
         private int NumOfPlaces;
@@ -28,6 +29,7 @@ namespace WindowsFormsApplication1OOP
         public Transport()
         {
             SerialNumber = "XXX";
+            Name = "noname";
         }
 
         public int getNumOfPlaces()
