@@ -5,8 +5,13 @@ using System.Text;
 
 namespace WindowsFormsApplication1OOP
 {
-    public abstract class AllUserClass
-    {}
+    public class AllUserClass
+    {   public string Identifer;
+        public AllUserClass()
+        {
+            Identifer = "XXX";
+        }
+    }
     public class Transport : AllUserClass
     {
         public string SerialNumber;

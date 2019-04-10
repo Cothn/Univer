@@ -22,21 +22,21 @@ namespace WindowsFormsApplication1OOP
         public List<object> ObjectList = new List<object>()
         {
             new pilot()
-            {name = "Алексей", SerialNumber = "P1"},
+            {name = "Алексей", Identifer = "P1"},
             new AirCraft()
-            {SerialNumber = "AC0" },
+            {Identifer = "AC0" },
             new Helicopter()
-            {SerialNumber = "H0" },
+            {Identifer = "H0" },
             new MotorShip()
-            {SerialNumber = "MS0" },
+            {Identifer = "MS0" },
             new SailsShip()
-            {SerialNumber = "SS0" },
+            {Identifer = "SS0" },
             new Train()
-            {SerialNumber = "T0" },
+            {Identifer = "T0" },
             new RacingCar()
-            {SerialNumber = "RC0" },
+            {Identifer = "RC0" },
             new CargoCar()
-            {SerialNumber = "CC0" }
+            {Identifer = "CC0" }
         };
 
         // Все пользовательские типы
@@ -166,7 +166,7 @@ namespace WindowsFormsApplication1OOP
                     //заполнение списка
                     for (int j = 0; j < SuitableItems.Count; j++)
                     {
-                        var ObjField = SuitableItems[j].GetType().GetField("SerialNumber");
+                        var ObjField = SuitableItems[j].GetType().GetField("Identifer");
                         if (ObjField != null)
                             combobox.Items.Add(ObjField.GetValue(SuitableItems[j]));
                     }
@@ -328,8 +328,8 @@ namespace WindowsFormsApplication1OOP
                 object ObjSerialNumber;
                 try
                 {
-                    var ObjSerialNumberField = ObjectList[i].GetType().GetField("SerialNumber");
-                    ObjSerialNumber = ObjSerialNumberField.GetValue(ObjectList[i]);
+                    var ObjIdentiferField = ObjectList[i].GetType().GetField("Identifer");
+                    ObjSerialNumber = ObjIdentiferField.GetValue(ObjectList[i]);
                 }
                 catch
                 {
