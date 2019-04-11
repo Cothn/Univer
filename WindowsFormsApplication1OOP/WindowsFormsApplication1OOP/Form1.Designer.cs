@@ -39,39 +39,42 @@
             // 
             this.ListView1.Location = new System.Drawing.Point(3, 4);
             this.ListView1.Name = "ListView1";
-            this.ListView1.Size = new System.Drawing.Size(327, 263);
+            this.ListView1.Size = new System.Drawing.Size(327, 273);
             this.ListView1.TabIndex = 0;
             this.ListView1.UseCompatibleStateImageBehavior = false;
             this.ListView1.View = System.Windows.Forms.View.List;
             // 
             // Create
             // 
+            this.Create.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Create.Location = new System.Drawing.Point(336, 4);
             this.Create.Name = "Create";
             this.Create.Size = new System.Drawing.Size(161, 29);
             this.Create.TabIndex = 1;
             this.Create.Text = "Create";
-            this.Create.UseVisualStyleBackColor = true;
+            this.Create.UseVisualStyleBackColor = false;
             this.Create.Click += new System.EventHandler(this.Create_Click);
             // 
             // Edit
             // 
+            this.Edit.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Edit.Location = new System.Drawing.Point(336, 40);
             this.Edit.Name = "Edit";
             this.Edit.Size = new System.Drawing.Size(80, 31);
             this.Edit.TabIndex = 2;
             this.Edit.Text = "Edit";
-            this.Edit.UseVisualStyleBackColor = true;
+            this.Edit.UseVisualStyleBackColor = false;
             this.Edit.Click += new System.EventHandler(this.Edit_Click);
             // 
             // Delete
             // 
+            this.Delete.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Delete.Location = new System.Drawing.Point(422, 40);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(75, 31);
             this.Delete.TabIndex = 3;
             this.Delete.Text = "Delete";
-            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.UseVisualStyleBackColor = false;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // ObjectBox
@@ -86,12 +89,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 269);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(505, 279);
             this.Controls.Add(this.ObjectBox);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.Edit);
             this.Controls.Add(this.Create);
             this.Controls.Add(this.ListView1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(521, 318);
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
