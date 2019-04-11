@@ -19,36 +19,21 @@ namespace WindowsFormsApplication1OOP
             InitializeComponent();
         }
 
-        public List<object> ObjectList = new List<object>()
-        {
-            new pilot()
-            {name = "Алексей", Identifer = "P1"},
-            new AirCraft()
-            {Identifer = "AC0" },
-            new Helicopter()
-            {Identifer = "H0" },
-            new MotorShip()
-            {Identifer = "MS0" },
-            new SailsShip()
-            {Identifer = "SS0" },
-            new Train()
-            {Identifer = "T0" },
-            new RacingCar()
-            {Identifer = "RC0" },
-            new CargoCar()
-            {Identifer = "CC0" }
-        };
+        public List<object> ObjectList = new List<object>();
 
         // Все пользовательские типы
-        public List<Type> AllObjList = Assembly.GetAssembly(typeof(AllUserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(AllUserClass))).ToList();
+        public List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
 
         private void Form1_Load(object sender, EventArgs e)
         {
             ListView1.MultiSelect = false;
 
             // Создаем список выбора обьекта
-            foreach (var obj in AllObjList)
+            foreach (var obj in AllTypeObjList)
+            {
+                ObjectList.Add(obj.GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes)); //первичный набор классов
                 ObjectBox.Items.Add(obj.Name);
+            }
             ObjectBox.SelectedIndex = 0;
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -58,7 +43,7 @@ namespace WindowsFormsApplication1OOP
         private void Create_Click(object sender, EventArgs e)
         {
             //Вызов конструктора выбранного обьекта
-            ObjectList.Add(AllObjList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
+            ObjectList.Add(AllTypeObjList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
             ListRedraw(ListView1, ObjectList);
             ListViewItem LVI = ListView1.Items[(ObjectList.Count - 1)];
             if (LVI != null)
