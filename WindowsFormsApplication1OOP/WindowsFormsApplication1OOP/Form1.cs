@@ -21,7 +21,21 @@ namespace WindowsFormsApplication1OOP
 
         public List<object> ObjectList = new List<object>();
 
+
         // Все пользовательские типы
+        /*
+        public List<Type> AllTypeObjList = new List<Type>()
+        {
+            typeof(pilot),
+            typeof(AirCraft),
+            typeof(Helicopter),
+            typeof(SailsShip),
+            typeof(MotorShip),
+            typeof(Train),
+            typeof(RacingCar),
+            typeof(CargoCar)
+        };
+        */
         public List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
 
         private void Form1_Load(object sender, EventArgs e)
