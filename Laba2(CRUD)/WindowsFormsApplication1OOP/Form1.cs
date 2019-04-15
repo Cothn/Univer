@@ -38,7 +38,7 @@ namespace CRUD_OOP2
         private void Form1_Load(object sender, EventArgs e)
         {
             ListView1.MultiSelect = false;
-
+            // Типы
             // Создаем список выбора обьекта
             foreach (var obj in AllTypeObjList)
             {
@@ -55,14 +55,10 @@ namespace CRUD_OOP2
         {
             //Вызов конструктора выбранного обьекта
             ObjectList.Add(AllTypeObjList[ObjectBox.SelectedIndex].GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes));
+            Form EForm = new ObjectForm(ObjectList[(ObjectList.Count - 1)], ObjectList);
+            EForm.ShowDialog();
+            EForm.Dispose();
             ListRedraw(ListView1, ObjectList);
-            ListViewItem LVI = ListView1.Items[(ObjectList.Count - 1)];
-            if (LVI != null)
-            {
-                ListView1.Focus();
-                LVI.Selected = true;
-                Edit.PerformClick();
-            }
         }
 
         private void Edit_Click(object sender, EventArgs e)
@@ -85,6 +81,7 @@ namespace CRUD_OOP2
         // метод удаления обьектов
         private void Delete_Action(Object DelObject, List<object> ObjectList)
         {
+            //удаление
             //список объектов которые могут использовать удаляемый обьект
             var ownerList = ObjectList.Where(item => (item.GetType().GetFields().Where(field => (field.FieldType == DelObject.GetType()))).ToList().Count > 0);
             foreach (var owner in ownerList)
@@ -117,7 +114,7 @@ namespace CRUD_OOP2
         }
 
         //Перерисовка списка объектов в соответсвии со списком обьектов
-        public void ListRedraw(ListView listView, List<Object> ObjectList)
+        private void ListRedraw(ListView listView, List<Object> ObjectList)
         {
             listView.Clear();
             for (int i = 0; i < ObjectList.Count; i++)

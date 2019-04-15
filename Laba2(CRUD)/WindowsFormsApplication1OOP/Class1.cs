@@ -226,7 +226,7 @@ namespace CRUD_OOP2
 
     }
 
-    public enum TFuelType { Craft = 0, Аи_80 = 1, Аи_92, Аи_95, Аи_98, ДТ, Газ, Электричество};
+    public enum TFuelType { Особое = 0, Аи_80 = 1, Аи_92, Аи_95, Аи_98, ДТ, Газ, Электричество};
     public class LandTransport : Transport
     {
         public int NumOfWheel;
@@ -299,7 +299,7 @@ namespace CRUD_OOP2
     {
         public float CoefStreamlining;
         public float CoefSkid;
-        private static string TransType = "-Racing";
+        //private static string TransType = "-Racing";
         public RacingCar()
         {
             Identifer = "RC0";

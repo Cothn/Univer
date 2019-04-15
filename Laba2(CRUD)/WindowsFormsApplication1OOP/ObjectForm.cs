@@ -9,7 +9,8 @@ using System.Drawing;
 namespace CRUD_OOP2
 {
     class ObjectForm : Form
-    {
+    {   
+        private int PointL = 15;
         private Object GObj;
         private List<Object> GObjectList;
         //Форма редактирования обьекта
@@ -49,7 +50,7 @@ namespace CRUD_OOP2
                     base.Controls.Add(check);
                 } //Создание для стандартных типов значений текстовых полей ввода, и их заполнение
                 else if (((fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum))
-                  || (fields[i].FieldType == typeof(string)))
+                                                        || (fields[i].FieldType == typeof(string)))
                 {
                     TextBox text = new TextBox
                     {
@@ -78,7 +79,7 @@ namespace CRUD_OOP2
                 }
 
                 //Создание выпадающих списков для вложенных членов
-                else if ((!fields[i].FieldType.IsPrimitive) && (!fields[i].FieldType.IsEnum) && (!(fields[i].FieldType == typeof(string))))
+                else 
                 {
                     ComboBox combobox = new ComboBox
                     {
