@@ -18,7 +18,7 @@ namespace Client
             try
             {
 
-                while (SendMessageFromSocket("aspmx.l.google.com", 25)) ;
+                while (SendMessageFromSocket("smtp.mail.ru", 25)) ;
 
             }
             catch (Exception ex)
@@ -63,16 +63,6 @@ namespace Client
             IPHostEntry ipHostC = Dns.GetHostEntry(strHostName);
             IPAddress ipAddrC = ipHost.AddressList[0];
 
-            // начало общения
-            BSendMess = Encoding.UTF8.GetBytes("HELO " + ipAddrC.ToString() + "\r\n");
-            //BSendMess = Encoding.UTF8.GetBytes("HELO "+"<cothnpir@mail.ru>"+"\r\n");
-            //BSendMess = Encoding.UTF8.GetBytes("HELO " + "smtp.testbox" + "\r\n");
-            bytesSent = sender.Send(BSendMess);
-            BRecMess = new byte[4096];
-            butesRec = sender.Receive(BRecMess);
-            SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
-            Console.WriteLine(SRecMess);
-
             // запуск TSL
             //BSendMess = Encoding.UTF8.GetBytes("STARTTLS" + "\r\n");
             //bytesSent = sender.Send(BSendMess);
@@ -81,8 +71,18 @@ namespace Client
             //SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
             //Console.WriteLine(SRecMess);
 
-            // Отправитель
-            //BSendMess = Encoding.UTF8.GetBytes("AUTH LOGIN" + "\r\n");
+            // начало общения
+            BSendMess = Encoding.UTF8.GetBytes("EHLO " + ipAddrC.ToString() + "\r\n");
+            //BSendMess = Encoding.UTF8.GetBytes("HELO "+"<cothnpir@mail.ru>"+"\r\n");
+            //BSendMess = Encoding.UTF8.GetBytes("HELO " + "smtp.testbox" + "\r\n");
+            bytesSent = sender.Send(BSendMess);
+            BRecMess = new byte[4096];
+            butesRec = sender.Receive(BRecMess);
+            SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
+            Console.WriteLine(SRecMess);
+
+            // Аутентификация
+            //BSendMess = Encoding.UTF8.GetBytes("AUTH LOGIN <sevkaa>" + "\r\n");
             //bytesSent = sender.Send(BSendMess);
             //BRecMess = new byte[1024];
             //butesRec = sender.Receive(BRecMess);
@@ -90,7 +90,7 @@ namespace Client
             //Console.WriteLine(SRecMess);
 
             // Отправитель
-            BSendMess = Encoding.UTF8.GetBytes("MAIL FROM:" +"<>"+ "\r\n");
+            BSendMess = Encoding.UTF8.GetBytes("MAIL FROM:<" + "mymail@list.ru" + ">\r\n");
             bytesSent = sender.Send(BSendMess);
             BRecMess = new byte[1024];
             butesRec = sender.Receive(BRecMess);
