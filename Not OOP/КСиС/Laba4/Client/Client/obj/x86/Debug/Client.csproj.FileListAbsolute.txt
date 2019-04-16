@@ -8,3 +8,8 @@ C:\Users\Ami\Desktop\универ\КСиС\Laba3\Client\Client\obj\x86\Debug\Cli
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\Client\Client\bin\Debug\Client.exe
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\Client\Client\bin\Debug\Client.pdb
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\Client\Client\obj\x86\Debug\Client.csprojResolveAssemblyReference.cache
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.exe
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.pdb
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\bin\Debug\Client.exe
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\bin\Debug\Client.pdb
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.csprojResolveAssemblyReference.cache

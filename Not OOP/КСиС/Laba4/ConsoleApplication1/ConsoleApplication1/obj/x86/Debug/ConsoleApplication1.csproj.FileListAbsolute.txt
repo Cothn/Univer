@@ -8,3 +8,8 @@ C:\Users\Ami\Desktop\универ\КСиС\Laba3\ConsoleApplication1\ConsoleAppl
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\Server1.exe
 C:\Users\Ami\Desktop\универ\КСиС\Laba3\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\Server1.pdb
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\Server1.exe
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\Server1.pdb
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\ConsoleApplication1\ConsoleApplication1\bin\Debug\Server1.exe
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\ConsoleApplication1\ConsoleApplication1\bin\Debug\Server1.pdb
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
