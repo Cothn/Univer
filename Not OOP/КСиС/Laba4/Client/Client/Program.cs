@@ -52,6 +52,7 @@ namespace Client
         }
         public static String RecOtv(SslStream Stream)
         {
+            // Получаем ответ
             byte[] BRecMess = new byte[1024]; ;
             int butesRec = Stream.Read(BRecMess, 0, BRecMess.Length);
             return Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
@@ -63,24 +64,27 @@ namespace Client
         }
         static bool SendMessageFromSocket(string Host, int port)
         {
-
             bool otv = false;
             String SRecMess;
             IPHostEntry ipHostEntry = null;
 
-            //установка удаленной точки для сокета 217.69.139.160 //94.100.180.160
+            //установка удаленной точки для сокета
             ipHostEntry = Dns.GetHostEntry(Host);
             if (ipHostEntry == null || ipHostEntry.AddressList == null || ipHostEntry.AddressList.Length <= 0)
                 throw new Exception("Не удалось определить IP-адрес по хосту.");
             IPAddress ipAddr = ipHostEntry.AddressList[0];
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, port);
             TcpClient client = new TcpClient();
-            //client.Connect(ipEndPoint);
-            client.Connect(ipEndPoint);
 
+
+            //Соеденяемся с удаленной точкой
+            client.Connect(ipEndPoint);
+            Console.WriteLine("Сокет соединяется с {0}", ipEndPoint);
+
+            //Создаем ssl поток
             SslStream sslStream;
             sslStream = new SslStream(client.GetStream(), false, RemoteCertificateValidationCB);
-            // Аутентификация
+            // Аутентификация ssl
             try
             {
                 sslStream.AuthenticateAsClient(Host);
@@ -96,15 +100,8 @@ namespace Client
                 client.Close();
                 throw new Exception("Аутентификация не была пройдена.");
             }
-            sslStream.ReadTimeout = 5000;  // Тут еще не определился, какой таймаут выставлять
+            sslStream.ReadTimeout = 5000;  
             sslStream.WriteTimeout = 5000;
-
-            //Сoздаем сокет Tcp/Ip
-            //Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
-            //Соеденяемся с удаленной точкой
-            //sender.Connect(ipEndPoint);
-            Console.WriteLine("Сокет соединяется с {0}", ipEndPoint);
 
             //butesRec = sender.Receive(BRecMess);
             SRecMess = RecOtv(sslStream);
@@ -121,7 +118,7 @@ namespace Client
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
-            //// Аутентификация            string enText = Convert.ToBase64String(simpleTextBytes);
+            //// Аутентификация       
             SendCommand("AUTH LOGIN", sslStream);
             SRecMess = RecOtv(sslStream).Substring(4);
             var enTextBytes = Convert.FromBase64String(SRecMess);
@@ -129,7 +126,7 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             //// логин
-            var Base64TextBytes = Encoding.UTF8.GetBytes("ksis_laba4@mail.ru");//"KsisLaba4");
+            var Base64TextBytes = Encoding.UTF8.GetBytes("ksis_laba4@mail.ru");
             String Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand( Base64Text, sslStream);
             SRecMess = RecOtv(sslStream).Substring(4);
@@ -138,19 +135,19 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             //// пароль
-            Base64TextBytes = Encoding.UTF8.GetBytes("25g25g2000g");//"KsisLaba4321");
+            Base64TextBytes = Encoding.UTF8.GetBytes("25g25g2000g");
             Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand(Base64Text, sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
             //// Отправитель
-            SendCommand("MAIL FROM:<" + "ksis_laba4@mail.ru" + ">", sslStream);//"KsisLaba4@yandex.by" + ">", sslStream);
+            SendCommand("MAIL FROM:<" + "ksis_laba4@mail.ru" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
             ////Получатель
-            SendCommand("RCPT TO:<" + "ksis_laba4@mail.ru" + ">", sslStream);//"ksislaba4@yandex.by" + ">", sslStream);
+            SendCommand("RCPT TO:<" + "ksislaba4@yandex.ru" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
@@ -169,7 +166,6 @@ namespace Client
             SendCommand("QUIT", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
-
 
             ////Освобождаем сокет
             sslStream.Close();
