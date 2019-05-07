@@ -48,28 +48,36 @@ namespace Client
             Stream.Write(commandBytes, 0, commandBytes.Length);
             Stream.Flush(); // Записывает содержимое потока
         }
+        public static bool RemoteCertificateValidationCB(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            // just returning True for any validation
+            return true;
+        }
         static bool SendMessageFromSocket(string Host, int port){
             
             bool otv = false;
-            //byte[] BSendMess;
-            //int bytesSent;
-            //byte[] BRecMess;
-            //int butesRec;
-            //String SRecMess;
-            IPHostEntry ipHost = null;
+            byte[] BSendMess;
+            int bytesSent;
+            byte[] BRecMess;
+            int butesRec;
+            String SRecMess;
+            IPHostEntry ipHostEntry = null;
 
             //установка удаленной точки для сокета 217.69.139.160 //94.100.180.160
-            ipHost = Dns.GetHostEntry(Host);
-            IPAddress ipAddr = ipHost.AddressList[0];
+            ipHostEntry = Dns.GetHostEntry(Host);
+            if (ipHostEntry == null || ipHostEntry.AddressList == null || ipHostEntry.AddressList.Length <= 0)
+                throw new Exception("Не удалось определить IP-адрес по хосту.");
+            IPAddress ipAddr = ipHostEntry.AddressList[0];
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, port);
             TcpClient client = new TcpClient();
+            //client.Connect(ipEndPoint);
             client.Connect(ipEndPoint);
             //TcpClient client = new TcpClient(Host, port);
             //SslStream sslStream = new SslStream(client.GetStream(), false);
             //sslStream.ReadTimeout = 5000;
             //sslStream.WriteTimeout = 5000;
             SslStream sslStream;
-            sslStream = new SslStream(client.GetStream(), false);
+            sslStream = new SslStream(client.GetStream(), false, RemoteCertificateValidationCB);
             // Аутентификация
             try
             {
@@ -95,20 +103,17 @@ namespace Client
             //Соеденяемся с удаленной точкой
             //sender.Connect(ipEndPoint);
             Console.WriteLine("Сокет соединяется с {0}", ipEndPoint);
-            //BRecMess = new byte[1024];
+            BRecMess = new byte[1024];
 
-            ////string messageData = ReadMessage(sslStream);
-            ////Console.WriteLine("Received: {0}", messageData);
             //butesRec = sender.Receive(BRecMess);
-            //SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
-            //Console.WriteLine(SRecMess);
+            butesRec = sslStream.Read(BRecMess, 0, BRecMess.Length);
+            SRecMess = Encoding.ASCII.GetString(BRecMess, 0, butesRec - 1);
+            Console.WriteLine(SRecMess);
 
             ////получаем свой ip
             string strHostName = Dns.GetHostName();
             IPHostEntry ipHostC = Dns.GetHostEntry(strHostName);
-            IPAddress ipAddrC = ipHost.AddressList[0];
-
-
+            IPAddress ipAddrC = ipHostEntry.AddressList[0];
 
             //// начало общения
             //BSendMess = Encoding.UTF8.GetBytes("EHLO " + ipAddrC.ToString() + "\r\n");
