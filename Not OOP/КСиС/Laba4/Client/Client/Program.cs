@@ -27,7 +27,7 @@ namespace Client
 
             try
             {
-                while (SendMessageFromSocket("smtp.yandex.ru", 25)) ;
+                while (SendMessageFromSocket("smtp.yandex.ru", 465)) ;
 
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Client
             }
             finally
             {
-               Console.ReadLine();
+                Console.ReadLine();
             }
         }
         void SendCommand(string command, SslStream Stream)
@@ -53,8 +53,9 @@ namespace Client
             // just returning True for any validation
             return true;
         }
-        static bool SendMessageFromSocket(string Host, int port){
-            
+        static bool SendMessageFromSocket(string Host, int port)
+        {
+
             bool otv = false;
             byte[] BSendMess;
             int bytesSent;
@@ -192,4 +193,3 @@ namespace Client
         }
     }
 }
-
