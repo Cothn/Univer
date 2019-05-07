@@ -27,7 +27,7 @@ namespace Client
 
             try
             {
-                while (SendMessageFromSocket("smtp.yandex.ru", 465)) ;
+                while (SendMessageFromSocket("smtp.mail.ru", 465)) ;
 
             }
             catch (Exception ex)
@@ -77,10 +77,7 @@ namespace Client
             TcpClient client = new TcpClient();
             //client.Connect(ipEndPoint);
             client.Connect(ipEndPoint);
-            //TcpClient client = new TcpClient(Host, port);
-            //SslStream sslStream = new SslStream(client.GetStream(), false);
-            //sslStream.ReadTimeout = 5000;
-            //sslStream.WriteTimeout = 5000;
+
             SslStream sslStream;
             sslStream = new SslStream(client.GetStream(), false, RemoteCertificateValidationCB);
             // Аутентификация
@@ -99,8 +96,8 @@ namespace Client
                 client.Close();
                 throw new Exception("Аутентификация не была пройдена.");
             }
-            sslStream.ReadTimeout = 500;  // Тут еще не определился, какой таймаут выставлять
-            sslStream.WriteTimeout = 500;
+            sslStream.ReadTimeout = 5000;  // Тут еще не определился, какой таймаут выставлять
+            sslStream.WriteTimeout = 5000;
 
             //Сoздаем сокет Tcp/Ip
             //Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -132,7 +129,7 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             //// логин
-            var Base64TextBytes = Encoding.UTF8.GetBytes("KsisLaba4");
+            var Base64TextBytes = Encoding.UTF8.GetBytes("ksis_laba4@mail.ru");//"KsisLaba4");
             String Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand( Base64Text, sslStream);
             SRecMess = RecOtv(sslStream).Substring(4);
@@ -141,19 +138,19 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             //// пароль
-            Base64TextBytes = Encoding.UTF8.GetBytes("KsisLaba4321");
+            Base64TextBytes = Encoding.UTF8.GetBytes("25g25g2000g");//"KsisLaba4321");
             Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand(Base64Text, sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
             //// Отправитель
-            SendCommand("MAIL FROM:<" + "KsisLaba4@yandex.ru" + ">", sslStream);
+            SendCommand("MAIL FROM:<" + "ksis_laba4@mail.ru" + ">", sslStream);//"KsisLaba4@yandex.by" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
             ////Получатель
-            SendCommand("RCPT TO:<" + "KsisLaba4@yandex.ru" + ">", sslStream);
+            SendCommand("RCPT TO:<" + "ksis_laba4@mail.ru" + ">", sslStream);//"ksislaba4@yandex.by" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
@@ -163,7 +160,7 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             ////Письмо
-            SendCommand("Test Cotn\r\n.", sslStream);
+            SendCommand("Test Cotn\r\nTest\r\n.", sslStream);
             //SendCommand(".", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
@@ -173,37 +170,10 @@ namespace Client
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
-            ////Сообщаем о начале письма
-            //BSendMess = Encoding.UTF8.GetBytes("DATA"+"\r\n");
-            //bytesSent = sender.Send(BSendMess);
-            //BRecMess = new byte[1024];
-            //butesRec = sender.Receive(BRecMess);
-            //SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
-            //Console.WriteLine(SRecMess);
-
-            ////Письмо
-            //BSendMess = Encoding.UTF8.GetBytes("Test Cotn" + "\r\n." + "\r\n");
-            //bytesSent = sender.Send(BSendMess);
-            //BRecMess = new byte[1024];
-            //butesRec = sender.Receive(BRecMess);
-            //SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
-            //Console.WriteLine(SRecMess);
-
-            ////Конец
-            //BSendMess = Encoding.UTF8.GetBytes("QUIT"+"\r\n");
-            //bytesSent = sender.Send(BSendMess);
-            //BRecMess = new byte[1024];
-            //butesRec = sender.Receive(BRecMess);
-            //SRecMess = Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
-            //Console.WriteLine(SRecMess);
-
-            
-
 
             ////Освобождаем сокет
-            //sender.Shutdown(SocketShutdown.Both);
-            //sender.Close();
-
+            sslStream.Close();
+            client.Close();
 
             return otv;
 
