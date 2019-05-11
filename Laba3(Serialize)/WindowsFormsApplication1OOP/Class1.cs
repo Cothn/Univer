@@ -1,5 +1,11 @@
-﻿namespace CRUD_OOP2
+﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace CRUD_OOP2
 {
+
+    [Serializable]
     public class UserClass
     {   
         public string Identifer;
@@ -8,6 +14,8 @@
             Identifer = "000";
         }
     }
+
+    [Serializable]
     public class Transport : UserClass
     {
         public string ModelName;
@@ -41,7 +49,10 @@
         }
     }
 
+    [Serializable]
     public enum TPilotClass { SPL = 0, PPL = 1, CPL, ATPL, CFI };
+
+    [Serializable]
     public class pilot : UserClass
     {
         public string name;
@@ -60,6 +71,8 @@
 
         }
     }
+
+    [Serializable]
     public class AirTransport : Transport
     {
         public int AvrFlightHeight_m;
@@ -88,6 +101,7 @@
         //}
     }
 
+    [Serializable]
     public class AirCraft : AirTransport
     {
         //public pilotRq PilotReq;
@@ -119,6 +133,7 @@
 
     }
 
+    [Serializable]
     public class Helicopter : AirTransport
     {
         public int CirkleSpeed_Kol_m;
@@ -161,6 +176,7 @@
 
     }
 
+    [Serializable]
     public class WaterTransport : Transport
     {
         public float DeadweightSize_m_3;
@@ -184,6 +200,7 @@
         }
     }
 
+    [Serializable]
     public class SailsShip : WaterTransport
     {
         public int SailsArea_m_2;
@@ -205,6 +222,8 @@
         //    return base.getTransportType() + TransType;
         //}
     }
+
+    [Serializable]
     public class MotorShip : WaterTransport
     {
         public int MoterPower_KJ;
@@ -222,7 +241,10 @@
 
     }
 
+    [Serializable]
     public enum TFuelType { Особое = 0, Аи_80 = 1, Аи_92, Аи_95, Аи_98, ДТ, Газ, Электричество};
+
+    [Serializable]
     public class LandTransport : Transport
     {
         public int NumOfWheel;
@@ -244,6 +266,7 @@
         //}
     }
 
+    [Serializable]
     public class Train : LandTransport
     {
         public int kolOfRailwayAxle;
@@ -269,6 +292,7 @@
 
     }
 
+    [Serializable]
     public class Car : LandTransport
     {
         public float Clerance_cm;
@@ -291,6 +315,7 @@
         //}
     }
 
+    [Serializable]
     public class RacingCar : Car
     {
         public float CoefStreamlining;
@@ -309,6 +334,7 @@
         //}
     }
 
+    [Serializable]
     public class CargoCar : Car
     {
         public bool Trailer;

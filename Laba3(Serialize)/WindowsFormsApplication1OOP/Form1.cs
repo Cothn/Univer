@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
-//using Newtonsoft.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CRUD_OOP2
 {
@@ -33,10 +33,25 @@ namespace CRUD_OOP2
         */
         private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
 
+        private List<Type> SerialList = new List<Type>()
+        {
+            typeof(JsonSerial),
+            typeof(BinSerial)//,
+            //typeof(Helicopter)
+        };
+
         private void Form1_Load(object sender, EventArgs e)
         {
             ListView1.MultiSelect = false;
             // Типы
+
+            foreach (var ser in SerialList)
+            {
+                SerializeBox.Items.Add(ser.Name);
+            }
+            SerializeBox.SelectedIndex = 0;
+            SerializeBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
             // Создаем список выбора обьекта
             foreach (var obj in AllTypeObjList)
             {
@@ -45,7 +60,6 @@ namespace CRUD_OOP2
             }
             ObjectBox.SelectedIndex = 0;
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
             ListRedraw(ListView1, ObjectList);
         }
 
@@ -136,15 +150,33 @@ namespace CRUD_OOP2
 
         private void SaveButt_Click(object sender, EventArgs e)
         {
-            JsonSerial JSerial = new JsonSerial();
-            JSerial.Serialize(ObjectList);
+            if (SerializeBox.SelectedIndex == 0)
+            {
+                JsonSerial JSerial = new JsonSerial();
+                JSerial.Serialize(ObjectList);
+            }
+            else
+            {
+                BinSerial BSerial = new BinSerial();
+                BSerial.Serialize(ObjectList);
+            }
         }
 
         private void LoadButt_Click(object sender, EventArgs e)
         {
-            JsonSerial JSerial = new JsonSerial();
-            ObjectList = (List<Object>)JSerial.DeSerialize();
-            ListRedraw(ListView1, ObjectList);
+            if (SerializeBox.SelectedIndex == 0)
+            {
+                JsonSerial JSerial = new JsonSerial();
+                ObjectList = (List<Object>)JSerial.DeSerialize();
+                ListRedraw(ListView1, ObjectList);
+            }
+            else
+            {
+                BinSerial BSerial = new BinSerial();
+                ObjectList = (List<Object>)BSerial.DeSerialize();
+                ListRedraw(ListView1, ObjectList);
+            }
+            
         }
 
 
