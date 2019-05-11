@@ -1,10 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.IO;
-using System.Windows.Forms;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace CRUD_OOP2
 {
@@ -18,7 +14,7 @@ namespace CRUD_OOP2
         {
             string jsonObject = JsonConvert.SerializeObject(itemList, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = TypeNameHandling.All,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             });
 
@@ -38,8 +34,9 @@ namespace CRUD_OOP2
 
             object Return_Object = JsonConvert.DeserializeObject<Object>(jsonObject, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                TypeNameHandling = TypeNameHandling.All
+
             });
 
             return Return_Object;

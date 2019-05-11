@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Drawing;
@@ -10,7 +9,7 @@ namespace CRUD_OOP2
 {
     class ObjectForm : Form
     {   
-        private int PointL = 15;
+
         private Object GObj;
         private List<Object> GObjectList;
         //Форма редактирования обьекта

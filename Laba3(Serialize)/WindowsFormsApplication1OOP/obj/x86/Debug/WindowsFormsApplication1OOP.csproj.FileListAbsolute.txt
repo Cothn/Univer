@@ -20,10 +20,11 @@ D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.pdb
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\WindowsFormsApplication1OOP.exe
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\WindowsFormsApplication1OOP.pdb
-D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csprojResolveAssemblyReference.cache
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\CRUD_OOP2.Form1.resources
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\CRUD_OOP2.Properties.Resources.resources
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.GenerateResource.Cache
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\Newtonsoft.Json.dll
-D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\Newtonsoft.Json.pdb
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\Newtonsoft.Json.xml
+D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csprojAssemblyReference.cache
+D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.CoreCompileInputs.cache
+D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.CopyComplete

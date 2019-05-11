@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 //using Newtonsoft.Json;
@@ -147,6 +144,7 @@ namespace CRUD_OOP2
         {
             JsonSerial JSerial = new JsonSerial();
             ObjectList = (List<Object>)JSerial.DeSerialize();
+            ListRedraw(ListView1, ObjectList);
         }
 
 

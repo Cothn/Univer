@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CRUD_OOP2
+﻿namespace CRUD_OOP2
 {
     public class UserClass
     {   
