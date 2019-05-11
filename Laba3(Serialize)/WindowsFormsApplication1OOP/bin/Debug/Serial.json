@@ -332,10 +332,10 @@
       "$type": "CRUD_OOP2.AirTransport, WindowsFormsApplication1OOP",
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
-        "$ref": "17"
+        "$ref": "18"
       },
       "Copilot": {
-        "$ref": "2"
+        "$ref": "17"
       },
       "NeadOfRanway": false,
       "minFlightHeight_m": 600,
@@ -354,20 +354,6 @@
     },
     {
       "$id": "20",
-      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
-      "ModelName": "Transport",
-      "AvrSpeed_Km_h": 50,
-      "Weight_Kg": 150,
-      "NumOfPlaces": 1,
-      "maxSpeed_Km_h": 120,
-      "dlin_m": 5,
-      "width_m": 3,
-      "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T0"
-    },
-    {
-      "$id": "21",
       "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
       "ModelName": "Transport",
       "AvrSpeed_Km_h": 50,

@@ -152,12 +152,12 @@ namespace CRUD_OOP2
         {
             if (SerializeBox.SelectedIndex == 0)
             {
-                JsonSerial JSerial = new JsonSerial();
+                JsonSerial JSerial = new JsonSerial("Serial.json");
                 JSerial.Serialize(ObjectList);
             }
             else
             {
-                BinSerial BSerial = new BinSerial();
+                BinSerial BSerial = new BinSerial("Serial.bin");
                 BSerial.Serialize(ObjectList);
             }
         }
@@ -166,13 +166,13 @@ namespace CRUD_OOP2
         {
             if (SerializeBox.SelectedIndex == 0)
             {
-                JsonSerial JSerial = new JsonSerial();
+                JsonSerial JSerial = new JsonSerial("Serial.json");
                 ObjectList = (List<Object>)JSerial.DeSerialize();
                 ListRedraw(ListView1, ObjectList);
             }
             else
             {
-                BinSerial BSerial = new BinSerial();
+                BinSerial BSerial = new BinSerial("Serial.bin");
                 ObjectList = (List<Object>)BSerial.DeSerialize();
                 ListRedraw(ListView1, ObjectList);
             }

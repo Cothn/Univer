@@ -8,17 +8,24 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CRUD_OOP2
 {
-    class TransportSerialize
+    interface TransportSerialize
     {
-
+        string FilePath { get;}
+        string FileExtens { get;}
+        void Serialize(Object itemList);
+        Object DeSerialize();
     }
 
-    class BinSerial
+    class BinSerial : TransportSerialize
     {
-        public string FilePath = "Serial.bin";/// <summary>
-                                              /// llll
-                                              /// </summary>
-        public string FileExtens = ".bin";
+        public string FilePath { get; }
+
+        public string FileExtens { get { return ".dat"; } }
+
+        public BinSerial(string SerializeFilePath)
+        {
+            FilePath = SerializeFilePath;
+        }
 
         public void Serialize(Object itemList)
         {
@@ -45,13 +52,16 @@ namespace CRUD_OOP2
 
     }
 
-    public class JsonSerial
+    public class JsonSerial : TransportSerialize
     {
-        public string FilePath = "Serial.json";/// <summary>
-                                               /// llll
-                                               /// </summary>
+        public string FilePath { get; }
 
-        public string FileExtens = ".json";
+        public string FileExtens { get { return ".json"; } }
+
+        public JsonSerial(string SerializeFilePath)
+        {
+            FilePath = SerializeFilePath;
+        }
 
         public void Serialize(Object itemList)
         {
@@ -84,6 +94,43 @@ namespace CRUD_OOP2
 
             return Return_Object;
         }
+
+    }
+
+    public class JcotSerial : TransportSerialize
+    {
+        public string FilePath { get; }
+
+        public string FileExtens { get { return ".jcot"; } }
+
+        public JcotSerial(string SerializeFilePath)
+        {
+            FilePath = SerializeFilePath;
+        }
+
+        public void Serialize(Object itemList)
+        {
+            JcotFormatter formatter = new JcotFormatter();
+            // получаем поток, куда будем записывать сериализованный объект
+            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, itemList);
+            }
+        }
+
+        public Object DeSerialize()
+        {
+            Object Return_Object = null;
+            // десериализация из файла people.dat
+            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            {
+                JcotFormatter formatter = new JcotFormatter();
+                Return_Object = (Object)formatter.Deserialize(fs);
+            }
+
+            return Return_Object;
+        }
+
 
     }
 }
