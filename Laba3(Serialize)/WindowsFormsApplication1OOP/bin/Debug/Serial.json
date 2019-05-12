@@ -137,6 +137,7 @@
     {
       "$id": "8",
       "$type": "CRUD_OOP2.MotorShip, WindowsFormsApplication1OOP",
+      "Identifer": "MS0",
       "MoterPower_KJ": 500,
       "FuelConsumption_l": 500,
       "DeadweightSize_m_3": 500.0,
@@ -149,8 +150,7 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "MS0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "9",
@@ -335,7 +335,7 @@
         "$ref": "18"
       },
       "Copilot": {
-        "$ref": "17"
+        "$ref": "2"
       },
       "NeadOfRanway": false,
       "minFlightHeight_m": 600,
@@ -351,20 +351,6 @@
       "heigh_m": 2,
       "MaxWeighOfCargo_Kg": 75,
       "Identifer": "AT0213"
-    },
-    {
-      "$id": "20",
-      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
-      "ModelName": "Transport",
-      "AvrSpeed_Km_h": 50,
-      "Weight_Kg": 150,
-      "NumOfPlaces": 1,
-      "maxSpeed_Km_h": 120,
-      "dlin_m": 5,
-      "width_m": 3,
-      "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T0"
     }
   ]
 }

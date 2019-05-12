@@ -16,7 +16,7 @@ namespace CRUD_OOP2
         public ObjectForm(Object Obj, List<Object> ObjectList)
         {
             //список всех полей объекта
-            FieldInfo[] fields = Obj.GetType().GetFields(); ;
+            FieldInfo[] fields = Obj.GetType().GetFields();
 
             //создание пустой формы для редактирования полей
             base.Text = Obj.GetType().ToString();

@@ -15,6 +15,8 @@ namespace CRUD_OOP2
             InitializeComponent();
         }
 
+        //private int ClassId = 1;
+
         private List<Object> ObjectList = new List<Object>();
 
         // Все пользовательские типы
@@ -33,12 +35,13 @@ namespace CRUD_OOP2
         */
         private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
 
-        private List<Type> SerialList = new List<Type>()
+        private List<string> SerialList = new List<string>()
         {
-            typeof(JsonSerial),
-            typeof(BinSerial)//,
-            //typeof(Helicopter)
+            "json",
+            "bin",
+            "jcot"
         };
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -47,7 +50,7 @@ namespace CRUD_OOP2
 
             foreach (var ser in SerialList)
             {
-                SerializeBox.Items.Add(ser.Name);
+                SerializeBox.Items.Add(ser);
             }
             SerializeBox.SelectedIndex = 0;
             SerializeBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -150,33 +153,60 @@ namespace CRUD_OOP2
 
         private void SaveButt_Click(object sender, EventArgs e)
         {
-            if (SerializeBox.SelectedIndex == 0)
+            TransportSerialize TSerial;
+            switch (SerializeBox.SelectedIndex)
             {
-                JsonSerial JSerial = new JsonSerial("Serial.json");
-                JSerial.Serialize(ObjectList);
+                case 0:
+                    {
+                        TSerial = new JsonSerial("Serial.json");
+                        TSerial.Serialize(ObjectList);
+                        break;
+                    }
+
+                case 1:
+                    {
+                        TSerial = new BinSerial("Serial.bin");
+                        TSerial.Serialize(ObjectList);
+                        break;
+                    }
+
+                default:
+                    {
+                        TSerial = new JcotSerial("Serial.jcot");
+                        TSerial.Serialize(ObjectList);
+                        break;
+                    }
             }
-            else
-            {
-                BinSerial BSerial = new BinSerial("Serial.bin");
-                BSerial.Serialize(ObjectList);
-            }
+            ListRedraw(ListView1, ObjectList);
         }
 
         private void LoadButt_Click(object sender, EventArgs e)
         {
-            if (SerializeBox.SelectedIndex == 0)
+            TransportSerialize TSerial;
+            switch (SerializeBox.SelectedIndex)
             {
-                JsonSerial JSerial = new JsonSerial("Serial.json");
-                ObjectList = (List<Object>)JSerial.DeSerialize();
-                ListRedraw(ListView1, ObjectList);
+                case 0:
+                    {
+                        TSerial = new JsonSerial("Serial.json");
+                        ObjectList = (List<Object>)TSerial.DeSerialize();
+                        break;
+                    }
+
+                case 1:
+                    {
+                        TSerial = new BinSerial("Serial.bin");
+                        ObjectList = (List<Object>)TSerial.DeSerialize();
+                        break;
+                    }
+
+                default:
+                    {
+                        TSerial = new JcotSerial("Serial.jcot");
+                        ObjectList = (List<Object>)TSerial.DeSerialize();
+                        break;
+                    }
             }
-            else
-            {
-                BinSerial BSerial = new BinSerial("Serial.bin");
-                ObjectList = (List<Object>)BSerial.DeSerialize();
-                ListRedraw(ListView1, ObjectList);
-            }
-            
+            ListRedraw(ListView1, ObjectList);
         }
 
 

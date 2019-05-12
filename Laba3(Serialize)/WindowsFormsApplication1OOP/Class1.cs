@@ -7,10 +7,21 @@ namespace CRUD_OOP2
 
     [Serializable]
     public class UserClass
-    {   
+    {
+        //private int ClassId;
+        //public bool SetId(int id)
+        //{
+        //    ClassId = id;
+        //    return true;
+        //}
+        //public int GetId()
+        //{
+        //    return ClassId;
+        //}
         public string Identifer;
         public UserClass()
         {
+            //ClassId = 0;
             Identifer = "000";
         }
     }
