@@ -137,7 +137,6 @@
     {
       "$id": "8",
       "$type": "CRUD_OOP2.MotorShip, WindowsFormsApplication1OOP",
-      "Identifer": "MS0",
       "MoterPower_KJ": 500,
       "FuelConsumption_l": 500,
       "DeadweightSize_m_3": 500.0,
@@ -150,7 +149,8 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75
+      "MaxWeighOfCargo_Kg": 75,
+      "Identifer": "MS0"
     },
     {
       "$id": "9",
@@ -267,27 +267,13 @@
     },
     {
       "$id": "15",
-      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
-      "ModelName": "Transport",
-      "AvrSpeed_Km_h": 50,
-      "Weight_Kg": 150,
-      "NumOfPlaces": 1,
-      "maxSpeed_Km_h": 120,
-      "dlin_m": 5,
-      "width_m": 3,
-      "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T0"
-    },
-    {
-      "$id": "16",
       "$type": "CRUD_OOP2.Helicopter, WindowsFormsApplication1OOP",
       "CirkleSpeed_Kol_m": 50,
       "VertikalSpeed_Km_h": 50,
       "weapon": false,
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
-        "$id": "17",
+        "$id": "16",
         "$type": "CRUD_OOP2.pilot, WindowsFormsApplication1OOP",
         "name": "Иван",
         "KolOfArraiv": 50,
@@ -315,10 +301,10 @@
       "Identifer": "H0"
     },
     {
-      "$ref": "17"
+      "$ref": "16"
     },
     {
-      "$id": "18",
+      "$id": "17",
       "$type": "CRUD_OOP2.pilot, WindowsFormsApplication1OOP",
       "name": "Иван",
       "KolOfArraiv": 50,
@@ -328,14 +314,14 @@
       "Identifer": "P0321"
     },
     {
-      "$id": "19",
+      "$id": "18",
       "$type": "CRUD_OOP2.AirTransport, WindowsFormsApplication1OOP",
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
-        "$ref": "18"
+        "$ref": "17"
       },
       "Copilot": {
-        "$ref": "2"
+        "$ref": "16"
       },
       "NeadOfRanway": false,
       "minFlightHeight_m": 600,
@@ -351,6 +337,20 @@
       "heigh_m": 2,
       "MaxWeighOfCargo_Kg": 75,
       "Identifer": "AT0213"
+    },
+    {
+      "$id": "19",
+      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
+      "ModelName": "Transport",
+      "AvrSpeed_Km_h": 50,
+      "Weight_Kg": 150,
+      "NumOfPlaces": 1,
+      "maxSpeed_Km_h": 120,
+      "dlin_m": 5,
+      "width_m": 3,
+      "heigh_m": 2,
+      "MaxWeighOfCargo_Kg": 75,
+      "Identifer": "T0123"
     }
   ]
 }

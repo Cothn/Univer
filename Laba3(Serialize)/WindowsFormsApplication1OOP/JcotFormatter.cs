@@ -10,27 +10,32 @@ namespace CRUD_OOP2
     class JcotFormatter
     {
         private string buff;
-        private List<Object> ObjectId;
+        private List<Object> ObjectId; //лист ссылок на обьекты(нужен для ссылочной целостности)
 
+        //константы разделители
         const string ArrayFirst = "[";
         const string ArrayEnd = "]";
         const string ClassFirst = "{";
         const string ClassEnd = "}";
-        const string TypeStr = "type";
         const string Field_Valye = ": ";
         const char After_Valye = '\n';
         //const char StringFirst = '"';
         //const char StringEnd = '"';
         const string StrId = "%Id";
+        const string TypeStr = "^type";
         const string Ref = "&ref";
         const string AnonimVal = "$valye";
+
         public void Serialize(Stream SerializationStream, object SerializeObject)
         {
-            ObjectId =  new List<Object>();
+
+            ObjectId = new List<Object>();
             buff = buff + ClassFirst + After_Valye + TypeStr + Field_Valye + SerializeObject.GetType().FullName + After_Valye;
             FieldInfo[] fields = SerializeObject.GetType().GetFields();
+      
             if (fields.Length == 0)
             {
+                //сохраняем значение при отсутствии свойств 
                 ObjectId.Add(SerializeObject);
                 buff = buff + AnonimVal + Field_Valye;
                 SerializeField(SerializeObject);
@@ -40,6 +45,7 @@ namespace CRUD_OOP2
                 SerializeClass(SerializeObject);
             }
 
+            //вывод
             buff = buff + ClassEnd;
             byte[] ByteBuff = Encoding.Unicode.GetBytes(buff);
             SerializationStream.Write(ByteBuff, 0, ByteBuff.Length);
@@ -47,7 +53,7 @@ namespace CRUD_OOP2
 
         public void SerializeField(object SerialField)
         {
-            //Сиреализация массива
+            // сиреализация разных типов
             if (SerialField == null)
             {
                 buff = buff + "null";
@@ -64,8 +70,9 @@ namespace CRUD_OOP2
             {
                 buff = buff + /*StringFirst +*/ SerialField /*+ StringEnd*/;
             }
-            else if (SerialField.GetType().IsEquivalentTo(typeof(List<Object>)))
+            else if (SerialField.GetType().IsEquivalentTo(typeof(List<Object>))) ///продумать условие!!!
             {
+                //Сиреализация массива
                 Type test = SerialField.GetType();
                 buff = buff + ArrayFirst + After_Valye;
                 foreach (var field in (List<object>)SerialField)
@@ -85,7 +92,7 @@ namespace CRUD_OOP2
         public void SerializeClass(object SerialClass)
         {
             buff = buff + ClassFirst + After_Valye;
-            //buff = buff + ClassFirst + StrId + Field_Valye + ClassId.ToString() + "\n";
+
             //поиск совпадения id
             int i = 0;
             int id = 0;
@@ -97,7 +104,6 @@ namespace CRUD_OOP2
                 }
                 i++;
             }
-            //CountId++;
 
             if (id != 0)
             {
@@ -127,7 +133,9 @@ namespace CRUD_OOP2
             ObjectId = new List<Object>();
             byte[] JcotByteBuff = new byte[4096];
             int colReadByte;
-            do {
+            // обработка потока ввода
+            do
+            {
                 colReadByte = SerializationStream.Read(JcotByteBuff, 0, 4096);
                 buff = buff + Encoding.Unicode.GetString(JcotByteBuff, 0, colReadByte);
             } while (colReadByte == 4096);
@@ -143,7 +151,7 @@ namespace CRUD_OOP2
             string FieldName = "";
             Object BuffObject = null;
 
-            //получение типа
+            //получение имени типа
             Offset = ReadFieldName(Buff, Offset, ref FieldName);
             if (FieldName == Ref)
             {
@@ -151,37 +159,42 @@ namespace CRUD_OOP2
 
                 while (Buff[Offset] != ClassEnd[0])
                     Offset++;
-                Offset = Offset + 2;
+                Offset = Offset + ClassEnd.Length + 1;
                 return BuffObject;
             }
 
+            //получение типа
             BuffObject = Type.GetType((string)ReadFieldValye(Buff, ref Offset, typeof(string))).GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
             ObjectId.Add(BuffObject);
+
+            //получаем имя поля
             Offset = ReadFieldName(Buff, Offset, ref FieldName);
 
             if (FieldName == AnonimVal)
             {
-                    return ReadFieldValye(Buff, ref Offset, BuffObject.GetType());
+                //только при первом вызове
+                return ReadFieldValye(Buff, ref Offset, BuffObject.GetType());
             }
             else
             {
-
-                    if (FieldName == StrId)
-                    {
-                        while (Buff[Offset] != After_Valye)
-                            Offset++;
+                // удаление id
+                if (FieldName == StrId)
+                {
+                    while (Buff[Offset] != After_Valye)
                         Offset++;
-                    }
-                    FieldInfo[] fields = BuffObject.GetType().GetFields();
+                    Offset++;
+                }
 
-                    while (Buff[Offset] != ClassEnd[0])
-                    {
-                        Offset = ReadFieldName(Buff, Offset, ref FieldName);    
-                        FieldInfo FI = fields.ToList().Where(field => field.Name == FieldName).First();
-                        FI.SetValue(BuffObject, ReadFieldValye(Buff, ref Offset, FI.FieldType));
-                    }
-                    Offset = Offset + ClassEnd.Length + 1;
-                    return BuffObject;
+                //восстановление свойств обьекта
+                FieldInfo[] fields = BuffObject.GetType().GetFields();
+                while (Buff[Offset] != ClassEnd[0])
+                {
+                    Offset = ReadFieldName(Buff, Offset, ref FieldName);
+                    FieldInfo FI = fields.ToList().Where(field => field.Name == FieldName).First();
+                    FI.SetValue(BuffObject, ReadFieldValye(Buff, ref Offset, FI.FieldType));
+                }
+                Offset = Offset + ClassEnd.Length + 1;
+                return BuffObject;
             }
 
         }
@@ -201,6 +214,7 @@ namespace CRUD_OOP2
 
         public object ReadFieldValye(string Buff, ref int Offset, Type FieldType)
         {
+            // строковое представление значения
             string StrFieldValye = "";
             object ReturnObj = null;
             while (Buff[Offset] != After_Valye)
@@ -217,10 +231,11 @@ namespace CRUD_OOP2
             }
             else if (StrFieldValye[0] == ClassFirst[0])
             {
-                return DeSerializeClass(Buff, ref Offset);
+                return DeSerializeClass(Buff, ref Offset); // вложенный класс
             }
             else if ((StrFieldValye[0] == ArrayFirst[0]))
             {
+                // массив обьектов
                 ReturnObj = new List<Object>();
                 Type ArrElemType = FieldType.GetGenericArguments()[0];
                 while (Buff[Offset] != ArrayEnd[0])

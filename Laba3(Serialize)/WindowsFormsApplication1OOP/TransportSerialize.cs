@@ -30,8 +30,8 @@ namespace CRUD_OOP2
         public void Serialize(Object itemList)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            // файл для записи сериализованного объекта
+            using (FileStream fs = new FileStream(FilePath, FileMode.Create))
             {
                 formatter.Serialize(fs, itemList);
             }
@@ -40,7 +40,7 @@ namespace CRUD_OOP2
         public Object DeSerialize()
         {
             Object Return_Object = null;
-            // десериализация из файла people.dat
+            // десериализация из файла
             using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -71,6 +71,7 @@ namespace CRUD_OOP2
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             });
 
+            // файл для записи сериализованного объекта
             using (StreamWriter fs = new StreamWriter(FilePath))
             {
                 fs.Write(jsonObject);
@@ -80,6 +81,7 @@ namespace CRUD_OOP2
         {
             string jsonObject = String.Empty;
 
+            // десериализация из файла
             using (StreamReader Sr = new StreamReader(FilePath))
             {
                 jsonObject = Sr.ReadToEnd();
@@ -111,8 +113,8 @@ namespace CRUD_OOP2
         public void Serialize(Object itemList)
         {
             JcotFormatter formatter = new JcotFormatter();
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            // файл для записи сериализованного объекта
+            using (FileStream fs = new FileStream(FilePath, FileMode.Create))
             {
                 formatter.Serialize(fs, itemList);
             }
@@ -121,7 +123,7 @@ namespace CRUD_OOP2
         public Object DeSerialize()
         {
             Object Return_Object = null;
-            // десериализация из файла people.dat
+            // десериализация из файла
             using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 JcotFormatter formatter = new JcotFormatter();
