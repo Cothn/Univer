@@ -157,27 +157,20 @@ namespace CRUD_OOP2
             switch (SerializeBox.SelectedIndex)
             {
                 case 0:
-                    {
                         TSerial = new JsonSerial("Serial.json");
                         TSerial.Serialize(ObjectList);
                         break;
-                    }
 
                 case 1:
-                    {
                         TSerial = new BinSerial("Serial.bin");
                         TSerial.Serialize(ObjectList);
                         break;
-                    }
 
                 default:
-                    {
                         TSerial = new JcotSerial("Serial.jcot");
                         TSerial.Serialize(ObjectList);
                         break;
-                    }
             }
-            ListRedraw(ListView1, ObjectList);
         }
 
         private void LoadButt_Click(object sender, EventArgs e)
@@ -186,29 +179,22 @@ namespace CRUD_OOP2
             switch (SerializeBox.SelectedIndex)
             {
                 case 0:
-                    {
                         TSerial = new JsonSerial("Serial.json");
                         ObjectList = (List<Object>)TSerial.DeSerialize();
                         break;
-                    }
 
                 case 1:
-                    {
                         TSerial = new BinSerial("Serial.bin");
                         ObjectList = (List<Object>)TSerial.DeSerialize();
                         break;
-                    }
 
                 default:
-                    {
                         TSerial = new JcotSerial("Serial.jcot");
                         ObjectList = (List<Object>)TSerial.DeSerialize();
                         break;
-                    }
             }
             ListRedraw(ListView1, ObjectList);
         }
-
 
     }
 }
