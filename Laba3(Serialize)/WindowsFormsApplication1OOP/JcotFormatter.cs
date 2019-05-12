@@ -10,28 +10,29 @@ namespace CRUD_OOP2
     class JcotFormatter
     {
         private string buff;
-        private List<Object> ObjectId = new List<Object>();
+        private List<Object> ObjectId;
 
-        const string ArrayFirst = "[\n";
+        const string ArrayFirst = "[";
         const string ArrayEnd = "]";
-        const string ClassFirst = "{\n";
+        const string ClassFirst = "{";
         const string ClassEnd = "}";
         const string TypeStr = "type";
         const string Field_Valye = ": ";
-        const string After_Valye = "\n";
-        const string StringFirst = "\"";
-        const string StringEnd = "\"";
-        const string StrId = "Id";
+        const char After_Valye = '\n';
+        //const char StringFirst = '"';
+        //const char StringEnd = '"';
+        const string StrId = "%Id";
         const string Ref = "&ref";
-
+        const string AnonimVal = "$valye";
         public void Serialize(Stream SerializationStream, object SerializeObject)
         {
-
-            buff = buff + ClassFirst + TypeStr + Field_Valye + SerializeObject.GetType().FullName + "\n";
+            ObjectId =  new List<Object>();
+            buff = buff + ClassFirst + After_Valye + TypeStr + Field_Valye + SerializeObject.GetType().FullName + After_Valye;
             FieldInfo[] fields = SerializeObject.GetType().GetFields();
             if (fields.Length == 0)
             {
-                buff = buff + "valye" + Field_Valye;
+                ObjectId.Add(SerializeObject);
+                buff = buff + AnonimVal + Field_Valye;
                 SerializeField(SerializeObject);
             }
             else
@@ -61,12 +62,12 @@ namespace CRUD_OOP2
             }
             else if (SerialField.GetType() == typeof(string))
             {
-                buff = buff + StringFirst + SerialField + StringEnd;
+                buff = buff + /*StringFirst +*/ SerialField /*+ StringEnd*/;
             }
-            else if ((SerialField.GetType().IsArray) || (SerialField.GetType().IsEquivalentTo(typeof(List<Object>))))
+            else if (SerialField.GetType().IsEquivalentTo(typeof(List<Object>)))
             {
                 Type test = SerialField.GetType();
-                buff = buff + ArrayFirst;
+                buff = buff + ArrayFirst + After_Valye;
                 foreach (var field in (List<object>)SerialField)
                 {
                     SerializeField(field);
@@ -83,10 +84,10 @@ namespace CRUD_OOP2
 
         public void SerializeClass(object SerialClass)
         {
-            buff = buff + ClassFirst;
+            buff = buff + ClassFirst + After_Valye;
             //buff = buff + ClassFirst + StrId + Field_Valye + ClassId.ToString() + "\n";
             //поиск совпадения id
-            int i = 1;
+            int i = 0;
             int id = 0;
             foreach (var obj in ObjectId)
             {
@@ -101,14 +102,14 @@ namespace CRUD_OOP2
             if (id != 0)
             {
                 //ссылка
-                buff = buff + Ref + Field_Valye + id.ToString() + "\n";
+                buff = buff + Ref + Field_Valye + id.ToString() + After_Valye;
             }
             else
             {
                 //новый обьект
                 ObjectId.Add(SerialClass);
-                buff = buff + StrId + Field_Valye + i.ToString() + "\n";
-                buff = buff + TypeStr + Field_Valye + SerialClass.GetType().FullName + "\n";
+                buff = buff + TypeStr + Field_Valye + SerialClass.GetType().FullName + After_Valye;
+                buff = buff + StrId + Field_Valye + i.ToString() + After_Valye;
                 FieldInfo[] fields = SerialClass.GetType().GetFields();
                 foreach (var field in fields)
                 {
@@ -119,11 +120,132 @@ namespace CRUD_OOP2
             buff = buff + ClassEnd;
         }
 
+
+
         public object Deserialize(Stream SerializationStream)
         {
-            Object Return_Object = null;
+            ObjectId = new List<Object>();
+            byte[] JcotByteBuff = new byte[4096];
+            int colReadByte;
+            do {
+                colReadByte = SerializationStream.Read(JcotByteBuff, 0, 4096);
+                buff = buff + Encoding.Unicode.GetString(JcotByteBuff, 0, colReadByte);
+            } while (colReadByte == 4096);
+
+            int offset = 2;
+            Object Return_Object = DeSerializeClass(buff, ref offset);
 
             return Return_Object;
         }
+
+        public object DeSerializeClass(string Buff, ref int Offset)
+        {
+            string FieldName = "";
+            Object BuffObject = null;
+
+            //получение типа
+            Offset = ReadFieldName(Buff, Offset, ref FieldName);
+            if (FieldName == Ref)
+            {
+                BuffObject = ObjectId[Convert.ToInt16(ReadFieldValye(Buff, ref Offset, typeof(Int16)))];
+
+                while (Buff[Offset] != ClassEnd[0])
+                    Offset++;
+                Offset = Offset + 2;
+                return BuffObject;
+            }
+
+            BuffObject = Type.GetType((string)ReadFieldValye(Buff, ref Offset, typeof(string))).GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
+            ObjectId.Add(BuffObject);
+            Offset = ReadFieldName(Buff, Offset, ref FieldName);
+
+            if (FieldName == AnonimVal)
+            {
+                    return ReadFieldValye(Buff, ref Offset, BuffObject.GetType());
+            }
+            else
+            {
+
+                    if (FieldName == StrId)
+                    {
+                        while (Buff[Offset] != After_Valye)
+                            Offset++;
+                        Offset++;
+                    }
+                    FieldInfo[] fields = BuffObject.GetType().GetFields();
+
+                    while (Buff[Offset] != ClassEnd[0])
+                    {
+                        Offset = ReadFieldName(Buff, Offset, ref FieldName);    
+                        FieldInfo FI = fields.ToList().Where(field => field.Name == FieldName).First();
+                        FI.SetValue(BuffObject, ReadFieldValye(Buff, ref Offset, FI.FieldType));
+                    }
+                    Offset = Offset + ClassEnd.Length + 1;
+                    return BuffObject;
+            }
+
+        }
+        public int ReadFieldName(string Buff, int Offset, ref string FieldName)
+        {
+            int i = Offset;
+            FieldName = "";
+            while (Buff[i] != Field_Valye[0])
+            {
+                FieldName = FieldName + Buff[i];
+                i++;
+            }
+            i = i + Field_Valye.Length;
+
+            return i;
+        }
+
+        public object ReadFieldValye(string Buff, ref int Offset, Type FieldType)
+        {
+            string StrFieldValye = "";
+            object ReturnObj = null;
+            while (Buff[Offset] != After_Valye)
+            {
+                StrFieldValye = StrFieldValye + Buff[Offset];
+                Offset++;
+            }
+            Offset++;
+
+            // возврат значения
+            if (StrFieldValye == "null")
+            {
+                return null;
+            }
+            else if (StrFieldValye[0] == ClassFirst[0])
+            {
+                return DeSerializeClass(Buff, ref Offset);
+            }
+            else if ((StrFieldValye[0] == ArrayFirst[0]))
+            {
+                ReturnObj = new List<Object>();
+                Type ArrElemType = FieldType.GetGenericArguments()[0];
+                while (Buff[Offset] != ArrayEnd[0])
+                {
+                    ((List<Object>)ReturnObj).Add(ReadFieldValye(Buff, ref Offset, ArrElemType));
+                }
+                Offset = Offset + ArrayEnd.Length + 1;
+                return ReturnObj;
+            }
+            else
+            {
+                if (FieldType.IsEnum)
+                {
+                    return Convert.ChangeType(StrFieldValye, typeof(int));
+                }
+                else
+                {
+                    return Convert.ChangeType(StrFieldValye, FieldType);
+                }
+            }
+            //return null;
+        }
+
     }
+
+
+
 }
