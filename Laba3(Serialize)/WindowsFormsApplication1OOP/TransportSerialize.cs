@@ -10,37 +10,31 @@ namespace CRUD_OOP2
 {
     interface TransportSerialize
     {
-        string FilePath { get; set;}
         string FileExtens { get;}
-        void Serialize(Object itemList);
-        Object DeSerialize();
+        void Serialize(Stream fs, Object itemList);
+        Object DeSerialize(Stream fs);
     }
 
     class BinSerial : TransportSerialize
     {
-        public string FilePath { get; set;}
 
         public string FileExtens { get { return ".dat"; } }
 
-        public void Serialize(Object itemList)
+        public void Serialize(Stream fs, Object itemList)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             // файл для записи сериализованного объекта
-            using (FileStream fs = new FileStream(FilePath, FileMode.Create))
-            {
+
                 formatter.Serialize(fs, itemList);
-            }
         }
 
-        public Object DeSerialize()
+        public Object DeSerialize(Stream fs)
         {
             Object Return_Object = null;
             // десериализация из файла
-            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
-            {
+
                 BinaryFormatter formatter = new BinaryFormatter();
                 Return_Object = (Object)formatter.Deserialize(fs);
-            }
 
             return Return_Object;
         }
@@ -49,11 +43,10 @@ namespace CRUD_OOP2
 
     public class JsonSerial : TransportSerialize
     {
-        public string FilePath { get; set;}
 
         public string FileExtens { get { return ".json"; } }
 
-        public void Serialize(Object itemList)
+        public void Serialize(Stream fs, Object itemList)
         {
             string jsonObject = JsonConvert.SerializeObject(itemList, Formatting.Indented, new JsonSerializerSettings
             {
@@ -62,17 +55,17 @@ namespace CRUD_OOP2
             });
 
             // файл для записи сериализованного объекта
-            using (StreamWriter fs = new StreamWriter(FilePath))
+            using (StreamWriter Sw = new StreamWriter(fs))
             {
-                fs.Write(jsonObject);
+                Sw.Write(jsonObject);
             }
         }
-        public Object DeSerialize()
+        public Object DeSerialize(Stream fs)
         {
             string jsonObject = String.Empty;
 
             // десериализация из файла
-            using (StreamReader Sr = new StreamReader(FilePath))
+            using (StreamReader Sr = new StreamReader(fs))
             {
                 jsonObject = Sr.ReadToEnd();
             }
@@ -91,30 +84,23 @@ namespace CRUD_OOP2
 
     public class JcotSerial : TransportSerialize
     {
-        public string FilePath { get; set;}
-
         public string FileExtens { get { return ".jcot"; } }
 
-        public void Serialize(Object itemList)
+        public void Serialize(Stream fs, Object itemList)
         {
             JcotFormatter formatter = new JcotFormatter();
             // файл для записи сериализованного объекта
-            using (FileStream fs = new FileStream(FilePath, FileMode.Create))
-            {
+
                 formatter.Serialize(fs, itemList);
-            }
         }
 
-        public Object DeSerialize()
+        public Object DeSerialize(Stream fs)
         {
             Object Return_Object = null;
             // десериализация из файла
-            using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
-            {
+
                 JcotFormatter formatter = new JcotFormatter();
                 Return_Object = (Object)formatter.Deserialize(fs);
-            }
-
             return Return_Object;
         }
 

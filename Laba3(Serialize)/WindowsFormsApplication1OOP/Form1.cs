@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.IO;
 
 namespace CRUD_OOP2
 {
@@ -34,7 +36,7 @@ namespace CRUD_OOP2
         };
         */
         private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
-        private List<Type> AllList = Assembly.GetAssembly(typeof(TransportSerialize)).GetTypes().Where(type => type.IsSubclassOf(typeof(TransportSerialize))).ToList();
+        //private List<Type> AllList = Assembly.GetAssembly(typeof(TransportSerialize)).GetTypes().Where(type => type.IsSubclassOf(typeof(TransportSerialize))).ToList();
 
         private List<string> SerialList = new List<string>()
         {
@@ -176,10 +178,9 @@ namespace CRUD_OOP2
                 return;
             // получаем выбранный файл
             string filename = saveFileDialog1.FileName;
-
-
-            TSerial.FilePath = filename;
-            TSerial.Serialize(ObjectList);
+            FileStream fs = new FileStream(filename, FileMode.Create);
+            TSerial.Serialize(fs, ObjectList);
+            fs.Close();
             MessageBox.Show("Файл сохранен");
         }
 
@@ -236,9 +237,9 @@ namespace CRUD_OOP2
             //    }
 
             //}
-
-            TSerial.FilePath = filename;
-            ObjectList = (List<Object>)TSerial.DeSerialize();
+            FileStream fs = new FileStream(filename, FileMode.OpenOrCreate);
+            ObjectList = (List<Object>)TSerial.DeSerialize(fs);
+            fs.Close();
             ListRedraw(ListView1, ObjectList);
             MessageBox.Show("Файл загружен");
         }

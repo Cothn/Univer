@@ -70,7 +70,7 @@ namespace CRUD_OOP2
             {
                 buff = buff + /*StringFirst +*/ SerialField /*+ StringEnd*/;
             }
-            else if (SerialField.GetType().IsEquivalentTo(typeof(List<Object>))) ///продумать условие!!!
+            else if (SerialField.GetType().GetInterface("ICollection")!= null || SerialField.GetType().GetInterface("IEnumerable") != null) //(SerialField.GetType().IsEquivalentTo(typeof(List<Object>))) ///продумать условие!!!
             {
                 //Сиреализация массива
                 Type test = SerialField.GetType();

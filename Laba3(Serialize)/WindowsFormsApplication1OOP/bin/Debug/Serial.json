@@ -4,6 +4,7 @@
     {
       "$id": "1",
       "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
+      "Identifer": "T0",
       "ModelName": "Transport",
       "AvrSpeed_Km_h": 50,
       "Weight_Kg": 150,
@@ -12,22 +13,22 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "2",
       "$type": "CRUD_OOP2.pilot, WindowsFormsApplication1OOP",
+      "Identifer": "P0",
       "name": "Иван",
       "KolOfArraiv": 50,
       "HoursOfFlight": 320,
       "PilotClass": 1,
-      "SertificatSerialNumber": "PPL000",
-      "Identifer": "P0"
+      "SertificatSerialNumber": "PPL000"
     },
     {
       "$id": "3",
       "$type": "CRUD_OOP2.AirTransport, WindowsFormsApplication1OOP",
+      "Identifer": "AT0",
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
         "$ref": "2"
@@ -45,12 +46,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "AT0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "4",
       "$type": "CRUD_OOP2.AirCraft, WindowsFormsApplication1OOP",
+      "Identifer": "AC0",
       "PilotMinKolOfArraiv": 50,
       "PilotMinHoursOfFlight": 320,
       "RequiredPilotClass": 0,
@@ -72,12 +73,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "AC0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "5",
       "$type": "CRUD_OOP2.Helicopter, WindowsFormsApplication1OOP",
+      "Identifer": "H0",
       "CirkleSpeed_Kol_m": 50,
       "VertikalSpeed_Km_h": 50,
       "weapon": false,
@@ -96,12 +97,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "H0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "6",
       "$type": "CRUD_OOP2.WaterTransport, WindowsFormsApplication1OOP",
+      "Identifer": "WT0",
       "DeadweightSize_m_3": 500.0,
       "Draught_m": 25,
       "ModelName": "WaterTransport",
@@ -112,12 +113,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "WT0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "7",
       "$type": "CRUD_OOP2.SailsShip, WindowsFormsApplication1OOP",
+      "Identifer": "SS0",
       "SailsArea_m_2": 300,
       "WindAngle": 50,
       "MastHeigh_m": 25,
@@ -131,12 +132,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "SS0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "8",
       "$type": "CRUD_OOP2.MotorShip, WindowsFormsApplication1OOP",
+      "Identifer": "MS0",
       "MoterPower_KJ": 500,
       "FuelConsumption_l": 500,
       "DeadweightSize_m_3": 500.0,
@@ -149,12 +150,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "MS0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "9",
       "$type": "CRUD_OOP2.LandTransport, WindowsFormsApplication1OOP",
+      "Identifer": "LT0",
       "NumOfWheel": 4,
       "FuelType": 0,
       "ModelName": "LandTransport",
@@ -165,12 +166,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "LT0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "10",
       "$type": "CRUD_OOP2.Train, WindowsFormsApplication1OOP",
+      "Identifer": "Tr0",
       "kolOfRailwayAxle": 10,
       "MaxTimeOfJob_h": 48,
       "NumOfWheel": 20,
@@ -183,12 +184,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "Tr0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "11",
       "$type": "CRUD_OOP2.Car, WindowsFormsApplication1OOP",
+      "Identifer": "C0",
       "Clerance_cm": 20.0,
       "WheelDiameter_cm": 40,
       "MoterPower_KJ": 50,
@@ -203,12 +204,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "C0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "12",
       "$type": "CRUD_OOP2.RacingCar, WindowsFormsApplication1OOP",
+      "Identifer": "RC0",
       "CoefStreamlining": 0.6,
       "CoefSkid": 0.7,
       "Clerance_cm": 20.0,
@@ -225,12 +226,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "RC0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "13",
       "$type": "CRUD_OOP2.CargoCar, WindowsFormsApplication1OOP",
+      "Identifer": "CC0",
       "Trailer": true,
       "MaxTrailerWeigh_Kg": 1000,
       "MaxDistance_Km": 2000,
@@ -248,12 +249,12 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "CC0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "14",
       "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
+      "Identifer": "T01231",
       "ModelName": "1231",
       "AvrSpeed_Km_h": 50,
       "Weight_Kg": 150,
@@ -262,25 +263,39 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T01231"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
       "$id": "15",
+      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
+      "Identifer": "T0",
+      "ModelName": "Transport",
+      "AvrSpeed_Km_h": 50,
+      "Weight_Kg": 150,
+      "NumOfPlaces": 1,
+      "maxSpeed_Km_h": 120,
+      "dlin_m": 5,
+      "width_m": 3,
+      "heigh_m": 2,
+      "MaxWeighOfCargo_Kg": 75
+    },
+    {
+      "$id": "16",
       "$type": "CRUD_OOP2.Helicopter, WindowsFormsApplication1OOP",
+      "Identifer": "H0",
       "CirkleSpeed_Kol_m": 50,
       "VertikalSpeed_Km_h": 50,
       "weapon": false,
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
-        "$id": "16",
+        "$id": "17",
         "$type": "CRUD_OOP2.pilot, WindowsFormsApplication1OOP",
+        "Identifer": "P0123",
         "name": "Иван",
         "KolOfArraiv": 50,
         "HoursOfFlight": 320,
         "PilotClass": 1,
-        "SertificatSerialNumber": "PPL000",
-        "Identifer": "P0123"
+        "SertificatSerialNumber": "PPL000"
       },
       "Copilot": {
         "$ref": "2"
@@ -297,31 +312,31 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "H0"
+      "MaxWeighOfCargo_Kg": 75
     },
     {
-      "$ref": "16"
+      "$ref": "17"
     },
     {
-      "$id": "17",
+      "$id": "18",
       "$type": "CRUD_OOP2.pilot, WindowsFormsApplication1OOP",
+      "Identifer": "P0321",
       "name": "Иван",
       "KolOfArraiv": 50,
       "HoursOfFlight": 320,
       "PilotClass": 1,
-      "SertificatSerialNumber": "PPL000",
-      "Identifer": "P0321"
+      "SertificatSerialNumber": "PPL000"
     },
     {
-      "$id": "18",
+      "$id": "19",
       "$type": "CRUD_OOP2.AirTransport, WindowsFormsApplication1OOP",
+      "Identifer": "AT0213",
       "AvrFlightHeight_m": 1500,
       "FirstPilot": {
-        "$ref": "17"
+        "$ref": "18"
       },
       "Copilot": {
-        "$ref": "16"
+        "$ref": "2"
       },
       "NeadOfRanway": false,
       "minFlightHeight_m": 600,
@@ -335,22 +350,7 @@
       "dlin_m": 5,
       "width_m": 3,
       "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "AT0213"
-    },
-    {
-      "$id": "19",
-      "$type": "CRUD_OOP2.Transport, WindowsFormsApplication1OOP",
-      "ModelName": "Transport",
-      "AvrSpeed_Km_h": 50,
-      "Weight_Kg": 150,
-      "NumOfPlaces": 1,
-      "maxSpeed_Km_h": 120,
-      "dlin_m": 5,
-      "width_m": 3,
-      "heigh_m": 2,
-      "MaxWeighOfCargo_Kg": 75,
-      "Identifer": "T0123"
+      "MaxWeighOfCargo_Kg": 75
     }
   ]
 }
