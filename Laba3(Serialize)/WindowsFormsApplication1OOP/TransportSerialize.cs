@@ -10,7 +10,7 @@ namespace CRUD_OOP2
 {
     interface TransportSerialize
     {
-        string FilePath { get;}
+        string FilePath { get; set;}
         string FileExtens { get;}
         void Serialize(Object itemList);
         Object DeSerialize();
@@ -18,14 +18,9 @@ namespace CRUD_OOP2
 
     class BinSerial : TransportSerialize
     {
-        public string FilePath { get; }
+        public string FilePath { get; set;}
 
         public string FileExtens { get { return ".dat"; } }
-
-        public BinSerial(string SerializeFilePath)
-        {
-            FilePath = SerializeFilePath;
-        }
 
         public void Serialize(Object itemList)
         {
@@ -54,14 +49,9 @@ namespace CRUD_OOP2
 
     public class JsonSerial : TransportSerialize
     {
-        public string FilePath { get; }
+        public string FilePath { get; set;}
 
         public string FileExtens { get { return ".json"; } }
-
-        public JsonSerial(string SerializeFilePath)
-        {
-            FilePath = SerializeFilePath;
-        }
 
         public void Serialize(Object itemList)
         {
@@ -101,14 +91,9 @@ namespace CRUD_OOP2
 
     public class JcotSerial : TransportSerialize
     {
-        public string FilePath { get; }
+        public string FilePath { get; set;}
 
         public string FileExtens { get { return ".jcot"; } }
-
-        public JcotSerial(string SerializeFilePath)
-        {
-            FilePath = SerializeFilePath;
-        }
 
         public void Serialize(Object itemList)
         {

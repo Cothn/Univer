@@ -36,6 +36,8 @@
             this.SerializeBox = new System.Windows.Forms.ComboBox();
             this.SaveButt = new System.Windows.Forms.Button();
             this.LoadButt = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // ListView1
@@ -118,6 +120,14 @@
             this.LoadButt.UseVisualStyleBackColor = false;
             this.LoadButt.Click += new System.EventHandler(this.LoadButt_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +162,8 @@
         private System.Windows.Forms.ComboBox SerializeBox;
         private System.Windows.Forms.Button SaveButt;
         private System.Windows.Forms.Button LoadButt;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

@@ -236,7 +236,7 @@ namespace CRUD_OOP2
             else if ((StrFieldValye[0] == ArrayFirst[0]))
             {
                 // массив обьектов
-                ReturnObj = new List<Object>();
+                ReturnObj = new List<Object>();  //другие массивы&&&
                 Type ArrElemType = FieldType.GetGenericArguments()[0];
                 while (Buff[Offset] != ArrayEnd[0])
                 {

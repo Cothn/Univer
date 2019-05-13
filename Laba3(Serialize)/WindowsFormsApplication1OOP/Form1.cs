@@ -34,12 +34,14 @@ namespace CRUD_OOP2
         };
         */
         private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
+        private List<Type> AllList = Assembly.GetAssembly(typeof(TransportSerialize)).GetTypes().Where(type => type.IsSubclassOf(typeof(TransportSerialize))).ToList();
 
         private List<string> SerialList = new List<string>()
         {
             "json",
-            "bin",
-            "jcot"
+            "jcot",
+            "bin"
+
         };
 
 
@@ -157,20 +159,28 @@ namespace CRUD_OOP2
             switch (SerializeBox.SelectedIndex)
             {
                 case 0:
-                        TSerial = new JsonSerial("Serial.json");
-                        TSerial.Serialize(ObjectList);
-                        break;
+                    TSerial = new JsonSerial();
+                    break;
 
                 case 1:
-                        TSerial = new BinSerial("Serial.bin");
-                        TSerial.Serialize(ObjectList);
-                        break;
+                    TSerial = new JcotSerial();
+                    break;
 
                 default:
-                        TSerial = new JcotSerial("Serial.jcot");
-                        TSerial.Serialize(ObjectList);
-                        break;
+                    TSerial = new BinSerial();
+                    break;
             }
+
+            saveFileDialog1.Filter = SerialList[SerializeBox.SelectedIndex] + " files(*"+ TSerial.FileExtens + ") | *" + TSerial.FileExtens + "|All files(*.*)|*.*";
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog1.FileName;
+
+
+            TSerial.FilePath = filename;
+            TSerial.Serialize(ObjectList);
+            MessageBox.Show("Файл сохранен");
         }
 
         private void LoadButt_Click(object sender, EventArgs e)
@@ -179,22 +189,63 @@ namespace CRUD_OOP2
             switch (SerializeBox.SelectedIndex)
             {
                 case 0:
-                        TSerial = new JsonSerial("Serial.json");
-                        ObjectList = (List<Object>)TSerial.DeSerialize();
-                        break;
+                    TSerial = new JsonSerial();
+                    break;
 
                 case 1:
-                        TSerial = new BinSerial("Serial.bin");
-                        ObjectList = (List<Object>)TSerial.DeSerialize();
-                        break;
+                    TSerial = new JcotSerial();
+                    break;
 
                 default:
-                        TSerial = new JcotSerial("Serial.jcot");
-                        ObjectList = (List<Object>)TSerial.DeSerialize();
-                        break;
+                    TSerial = new BinSerial();
+                    break;
             }
+
+            openFileDialog1.Filter = SerialList[SerializeBox.SelectedIndex] + " files(*" + TSerial.FileExtens + ") | *" + TSerial.FileExtens + "|All files(*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
+            //string fileExtens = null;
+
+            ////если переключили фильтр
+            //if (openFileDialog1.FilterIndex != 0)
+            //{
+            //    int i = filename.Length -1;
+            //    fileExtens = "";
+            //    do
+            //    {
+            //        fileExtens = filename[i] + fileExtens;
+            //        i--;
+            //    } while (fileExtens[0] != '.');
+            //    switch (SerializeBox.SelectedIndex)
+            //    {
+            //        case 0:
+            //            TSerial = new JsonSerial();
+            //            break;
+
+            //        case 1:
+            //            TSerial = new JcotSerial();
+            //            break;
+
+            //        case 2:
+            //            TSerial = new BinSerial();
+            //            break;
+            //        default:
+            //            break;
+            //    }
+
+            //}
+
+            TSerial.FilePath = filename;
+            ObjectList = (List<Object>)TSerial.DeSerialize();
             ListRedraw(ListView1, ObjectList);
+            MessageBox.Show("Файл загружен");
         }
 
+        private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }
