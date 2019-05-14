@@ -5,38 +5,34 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System;
 using System.Collections;
-using System.Net;
-using System.Net.Sockets;
 using System.Net.Security;
 using System.Security.Authentication;
-using System.Text;
 using System.Security.Cryptography.X509Certificates;
-using System.IO;
 
 namespace Client
 {
 
     class Program
     {
-        static void Main(string[] args)
-        {
+        //public 
+        //static void Main(string[] args)
+        //{
 
-            try
-            {
-               // while (SendMessageFromSocket("smtp.mail.ru", 465)) ;
+        //    try
+        //    {
+        //       // while (SendMessageFromSocket("smtp.mail.ru", 465)) ;
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            finally
-            {
-                Console.ReadLine();
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //    finally
+        //    {
+        //        Console.ReadLine();
+        //    }
+        //}
         public static bool SendCommand(String command, SslStream Stream)
         {
 
@@ -60,9 +56,9 @@ namespace Client
             // just returning True for any validation
             return true;
         }
-        static bool SendMessageFromSocket(string Host, int port)
+        static Stream SendMessageFromSocket(string Host, int port)
         {
-            bool otv = false;
+            //bool otv = false;
             String SRecMess;
             IPHostEntry ipHostEntry = null;
 
@@ -98,17 +94,26 @@ namespace Client
                 client.Close();
                 throw new Exception("Аутентификация не была пройдена.");
             }
-            sslStream.ReadTimeout = 5000;  
+            sslStream.ReadTimeout = 5000;
             sslStream.WriteTimeout = 5000;
 
             //butesRec = sender.Receive(BRecMess);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
+            return (sslStream);
+            ////Освобождаем сокет
+            sslStream.Close();
+            client.Close();
+        }
+        public bool SendMail(SslStream sslStream)
+        { 
             ////получаем свой ip
+            bool otv = false;
+            String SRecMess;
             string strHostName = Dns.GetHostName();
             IPHostEntry ipHostC = Dns.GetHostEntry(strHostName);
-            IPAddress ipAddrC = ipHostEntry.AddressList[0];
+            IPAddress ipAddrC = ipHostC.AddressList[0];
 
 
             //// начало общения
@@ -155,7 +160,7 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             ////Письмо
-            SendCommand("Test Cotn\r\nTest\r\n.", sslStream);
+            SendCommand("Test Cotn1\r\nTest\r\n.", sslStream);
             //SendCommand(".", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
@@ -164,10 +169,8 @@ namespace Client
             SendCommand("QUIT", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
+            otv = true;
 
-            ////Освобождаем сокет
-            sslStream.Close();
-            client.Close();
 
             return otv;
 

@@ -13,3 +13,5 @@ D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.p
 D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\bin\Debug\Client.exe
 D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\bin\Debug\Client.pdb
 D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.csprojResolveAssemblyReference.cache
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.csprojAssemblyReference.cache
+D:\RepositHub\Univer\Not OOP\КСиС\Laba4\Client\Client\obj\x86\Debug\Client.csproj.CoreCompileInputs.cache
