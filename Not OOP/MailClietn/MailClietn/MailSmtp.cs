@@ -3,42 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-
 using System.Net;
 using System.Net.Sockets;
-
-using System;
 using System.Collections;
-using System.Net;
-using System.Net.Sockets;
 using System.Net.Security;
 using System.Security.Authentication;
-using System.Text;
 using System.Security.Cryptography.X509Certificates;
-using System.IO;
 
-namespace Client
+
+namespace MailClietn
 {
-
-    class Program
+    class MailSmtp
     {
-        static void Main(string[] args)
-        {
-
-            try
-            {
-                while (SendMessageFromSocket("smtp.mail.ru", 465)) ;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            finally
-            {
-                Console.ReadLine();
-            }
-        }
+        public static string login;
+        public static string password;
+        public static Stream LogStream;
         public static bool SendCommand(String command, SslStream Stream)
         {
 
@@ -62,9 +41,9 @@ namespace Client
             // just returning True for any validation
             return true;
         }
-        static bool SendMessageFromSocket(string Host, int port)
+        public static SslStream ConnectSmtpServer(string Host, int port)
         {
-            bool otv = false;
+            //bool otv = false;
             String SRecMess;
             IPHostEntry ipHostEntry = null;
 
@@ -141,13 +120,20 @@ namespace Client
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
+            return sslStream;
+        }
+        public static void SendMail(SslStream sslStream)
+        {
+            ////получаем свой ip
+            String SRecMess;
+
             //// Отправитель
             SendCommand("MAIL FROM:<" + "ksis_laba4@mail.ru" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
             ////Получатель
-            SendCommand("RCPT TO:<" + "ksislaba4@yandex.ru" + ">", sslStream);
+            SendCommand("RCPT TO:<" + "ksis_laba4@mail.ru" + ">", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
@@ -157,22 +143,20 @@ namespace Client
             Console.WriteLine(SRecMess);
 
             ////Письмо
-            SendCommand("Test Cotn\r\nTest\r\n.", sslStream);
+            SendCommand("Test Cotn1\r\nTest\r\n.", sslStream);
             //SendCommand(".", sslStream);
             SRecMess = RecOtv(sslStream);
             Console.WriteLine(SRecMess);
 
+        }
+        public static void ExitSmtpAcount(SslStream sslStream)
+        {
             ////Конец
             SendCommand("QUIT", sslStream);
-            SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            Console.WriteLine(RecOtv(sslStream));
 
-            ////Освобождаем сокет
             sslStream.Close();
-            client.Close();
-
-            return otv;
-
+            //client.Close();
         }
     }
 }
