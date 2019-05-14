@@ -30,6 +30,7 @@ namespace MailClietn
         {
             MailSmtp.login = LoginBox.Text;
             MailSmtp.password = PassBox.Text;
+            MailSmtp.LogBox = LogBox;
             LoginBox.Visible = false;
             PassBox.Visible = false;
             LogButt.Visible = false;
@@ -64,7 +65,11 @@ namespace MailClietn
 
         private void Send_Click(object sender, EventArgs e)
         {
-            MailSmtp.SendMail(sslStream);
+            string mess = "";
+            if (ThemeBox.Text != "")
+            { mess = "Subject: " + ThemeBox.Text + "\r\n";}
+            mess = mess + MessBox.Text;
+            MailSmtp.SendMail(sslStream, ToBox.Text, mess);
         }
 
         private void label3_Click(object sender, EventArgs e)

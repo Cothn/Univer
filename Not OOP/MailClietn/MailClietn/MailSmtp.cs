@@ -9,18 +9,18 @@ using System.Collections;
 using System.Net.Security;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Windows.Forms;
 
 namespace MailClietn
 {
     class MailSmtp
     {
-        public static string login;
-        public static string password;
-        public static Stream LogStream;
+        public static string login="ksis_laba4@mail.ru";
+        public static string password = "25g25g2000g";
+        public static TextBox LogBox;
         public static bool SendCommand(String command, SslStream Stream)
         {
-
+            LogBox.Text = LogBox.Text + command + "\r\n";
             byte[] commandBytes = System.Text.Encoding.UTF8.GetBytes(String.Format("{0}\r\n", command));
 
             // Пишем команду для сервера
@@ -34,7 +34,7 @@ namespace MailClietn
             // Получаем ответ
             byte[] BRecMess = new byte[1024]; ;
             int butesRec = Stream.Read(BRecMess, 0, BRecMess.Length);
-            return Encoding.UTF8.GetString(BRecMess, 0, butesRec - 1);
+            return Encoding.UTF8.GetString(BRecMess, 0, butesRec );///
         }
         public static bool RemoteCertificateValidationCB(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
@@ -58,7 +58,8 @@ namespace MailClietn
 
             //Соеденяемся с удаленной точкой
             client.Connect(ipEndPoint);
-            Console.WriteLine("Сокет соединяется с {0}", ipEndPoint);
+            LogBox.Text = LogBox.Text + "Сокет соединяется с " + ipEndPoint.ToString();
+            //Console.WriteLine("Сокет соединяется с {0}", ipEndPoint);
 
             //Создаем ssl поток
             SslStream sslStream;
@@ -84,7 +85,8 @@ namespace MailClietn
 
             //butesRec = sender.Receive(BRecMess);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+           // Console.WriteLine(SRecMess);
 
             ////получаем свой ip
             string strHostName = Dns.GetHostName();
@@ -95,65 +97,78 @@ namespace MailClietn
             //// начало общения
             SendCommand("EHLO " + ipAddrC.ToString() + "", sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             //// Аутентификация       
             SendCommand("AUTH LOGIN", sslStream);
-            SRecMess = RecOtv(sslStream).Substring(4);
+            SRecMess = RecOtv(sslStream);
+            LogBox.Text = LogBox.Text + SRecMess.Substring(0, 4);
+            SRecMess = SRecMess.Substring(4);
             var enTextBytes = Convert.FromBase64String(SRecMess);
             SRecMess = Encoding.UTF8.GetString(enTextBytes);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             //// логин
-            var Base64TextBytes = Encoding.UTF8.GetBytes("ksis_laba4@mail.ru");
+            var Base64TextBytes = Encoding.UTF8.GetBytes(login);
             String Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand(Base64Text, sslStream);
-            SRecMess = RecOtv(sslStream).Substring(4);
+            SRecMess = RecOtv(sslStream);
+            LogBox.Text = LogBox.Text + SRecMess.Substring(0,4);
+            SRecMess = SRecMess.Substring(4);
             enTextBytes = Convert.FromBase64String(SRecMess);
             SRecMess = Encoding.UTF8.GetString(enTextBytes);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             //// пароль
-            Base64TextBytes = Encoding.UTF8.GetBytes("25g25g2000g");
+            Base64TextBytes = Encoding.UTF8.GetBytes(password);
             Base64Text = Convert.ToBase64String(Base64TextBytes);
             SendCommand(Base64Text, sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             return sslStream;
         }
-        public static void SendMail(SslStream sslStream)
+        public static void SendMail(SslStream sslStream, string to, string Text)
         {
             ////получаем свой ip
             String SRecMess;
 
             //// Отправитель
-            SendCommand("MAIL FROM:<" + "ksis_laba4@mail.ru" + ">", sslStream);
+            SendCommand("MAIL FROM:<" + login + ">", sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             ////Получатель
-            SendCommand("RCPT TO:<" + "ksis_laba4@mail.ru" + ">", sslStream);
+            SendCommand("RCPT TO:<" + to + ">", sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             ////Сообщаем о начале письма
             SendCommand("DATA", sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
             ////Письмо
-            SendCommand("Test Cotn1\r\nTest\r\n.", sslStream);
+            SendCommand(Text+"\r\n.", sslStream);
             //SendCommand(".", sslStream);
             SRecMess = RecOtv(sslStream);
-            Console.WriteLine(SRecMess);
+            LogBox.Text = LogBox.Text + SRecMess;
+            //Console.WriteLine(SRecMess);
 
         }
         public static void ExitSmtpAcount(SslStream sslStream)
         {
             ////Конец
             SendCommand("QUIT", sslStream);
-            Console.WriteLine(RecOtv(sslStream));
+            LogBox.Text = LogBox.Text + RecOtv(sslStream);
+            //Console.WriteLine(RecOtv(sslStream));
 
             sslStream.Close();
             //client.Close();

@@ -67,8 +67,10 @@
             // 
             this.PassBox.Location = new System.Drawing.Point(338, 13);
             this.PassBox.Name = "PassBox";
+            this.PassBox.PasswordChar = '$';
             this.PassBox.Size = new System.Drawing.Size(184, 20);
             this.PassBox.TabIndex = 3;
+            this.PassBox.UseSystemPasswordChar = true;
             this.PassBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label2
@@ -89,7 +91,7 @@
             // 
             // LogOut
             // 
-            this.LogOut.Location = new System.Drawing.Point(12, 11);
+            this.LogOut.Location = new System.Drawing.Point(12, 10);
             this.LogOut.Name = "LogOut";
             this.LogOut.Size = new System.Drawing.Size(655, 23);
             this.LogOut.TabIndex = 6;
@@ -154,6 +156,7 @@
             this.LogBox.Location = new System.Drawing.Point(442, 120);
             this.LogBox.Multiline = true;
             this.LogBox.Name = "LogBox";
+            this.LogBox.ReadOnly = true;
             this.LogBox.Size = new System.Drawing.Size(225, 213);
             this.LogBox.TabIndex = 13;
             // 
