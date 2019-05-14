@@ -1,1 +1,0 @@
-POshol na Fig
