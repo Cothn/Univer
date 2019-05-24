@@ -69,20 +69,22 @@ namespace CRUD_OOP2
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ListRedraw(ListView1, ObjectList);
 
-            //плагины
-            string pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
-            DirectoryInfo pluginDirect = new DirectoryInfo(pluginPath);
-            if (!pluginDirect.Exists)
-            { pluginDirect.Create(); }
+            ////плагины
+            //string pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+            //DirectoryInfo pluginDirect = new DirectoryInfo(pluginPath);
+            //if (!pluginDirect.Exists)
+            //{ pluginDirect.Create(); }
 
-            //берем все dll
-            var pluginFiles = Directory.GetFiles(pluginPath, ".dll");
-            foreach(var file in pluginFiles)
-            {
-                //загружаем сборку
-                Assembly asm
+            ////берем все dll
+            //var pluginFiles = Directory.GetFiles(pluginPath, ".dll");
+            //foreach(var file in pluginFiles)
+            //{
+            //    //загружаем сборку
+            //    Assembly asm = Assembly.LoadFrom(file);
+            //    //Ищем типы
+            //    var types = asm.GetTypes().Where(t => t.GetInterfaces().Where(j => j.FullName == typeof().FullName).Any());
 
-            }
+            //}
 
         }
 
