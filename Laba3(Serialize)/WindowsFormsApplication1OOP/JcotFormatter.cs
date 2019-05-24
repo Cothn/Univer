@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -70,12 +71,12 @@ namespace CRUD_OOP2
             {
                 buff = buff + /*StringFirst +*/ SerialField /*+ StringEnd*/;
             }
-            else if (SerialField.GetType().GetInterface("ICollection")!= null || SerialField.GetType().GetInterface("IEnumerable") != null) //(SerialField.GetType().IsEquivalentTo(typeof(List<Object>))) ///продумать условие!!!
+            else if (SerialField is IEnumerable)
             {
-                //Сиреализация массива
+                //Сериализация массива
                 Type test = SerialField.GetType();
                 buff = buff + ArrayFirst + After_Valye;
-                foreach (var field in (List<object>)SerialField)
+                foreach (var field in (IEnumerable)SerialField)
                 {
                     SerializeField(field);
                 }

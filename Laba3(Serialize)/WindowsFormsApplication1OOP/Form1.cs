@@ -38,14 +38,14 @@ namespace CRUD_OOP2
         private List<Type> AllTypeObjList = Assembly.GetAssembly(typeof(UserClass)).GetTypes().Where(type => type.IsSubclassOf(typeof(UserClass))).ToList();
         //private List<Type> AllList = Assembly.GetAssembly(typeof(TransportSerialize)).GetTypes().Where(type => type.IsSubclassOf(typeof(TransportSerialize))).ToList();
 
-        private List<string> SerialList = new List<string>()
+
+        private List<TransportSerialize> SerialList = new List<TransportSerialize>()
         {
-            "json",
-            "jcot",
-            "bin"
+            new JsonSerial(),
+            new JcotSerial(),
+            new BinSerial()
 
         };
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -54,7 +54,7 @@ namespace CRUD_OOP2
 
             foreach (var ser in SerialList)
             {
-                SerializeBox.Items.Add(ser);
+                SerializeBox.Items.Add(ser.name);
             }
             SerializeBox.SelectedIndex = 0;
             SerializeBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -175,21 +175,21 @@ namespace CRUD_OOP2
 
         private void SaveButt_Click(object sender, EventArgs e)
         {
-            TransportSerialize TSerial;
-            switch (SerializeBox.SelectedIndex)
-            {
-                case 0:
-                    TSerial = new JsonSerial();
-                    break;
+            TransportSerialize TSerial = SerialList[SerializeBox.SelectedIndex];
+            //switch (SerializeBox.SelectedIndex)
+            //{
+            //    case 0:
+            //        TSerial = new JsonSerial();
+            //        break;
 
-                case 1:
-                    TSerial = new JcotSerial();
-                    break;
+            //    case 1:
+            //        TSerial = new JcotSerial();
+            //        break;
 
-                default:
-                    TSerial = new BinSerial();
-                    break;
-            }
+            //    default:
+            //        TSerial = new BinSerial();
+            //        break;
+            //}
 
             saveFileDialog1.Filter = SerialList[SerializeBox.SelectedIndex] + " files(*"+ TSerial.FileExtens + ") | *" + TSerial.FileExtens + "|All files(*.*)|*.*";
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
@@ -204,21 +204,21 @@ namespace CRUD_OOP2
 
         private void LoadButt_Click(object sender, EventArgs e)
         {
-            TransportSerialize TSerial;
-            switch (SerializeBox.SelectedIndex)
-            {
-                case 0:
-                    TSerial = new JsonSerial();
-                    break;
+            TransportSerialize TSerial = SerialList[SerializeBox.SelectedIndex];
+            //switch (SerializeBox.SelectedIndex)
+            //{
+            //    case 0:
+            //        TSerial = new JsonSerial();
+            //        break;
 
-                case 1:
-                    TSerial = new JcotSerial();
-                    break;
+            //    case 1:
+            //        TSerial = new JcotSerial();
+            //        break;
 
-                default:
-                    TSerial = new BinSerial();
-                    break;
-            }
+            //    default:
+            //        TSerial = new BinSerial();
+            //        break;
+            //}
 
             openFileDialog1.Filter = SerialList[SerializeBox.SelectedIndex] + " files(*" + TSerial.FileExtens + ") | *" + TSerial.FileExtens + "|All files(*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)

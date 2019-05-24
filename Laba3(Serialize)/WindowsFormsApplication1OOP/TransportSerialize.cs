@@ -10,14 +10,15 @@ namespace CRUD_OOP2
 {
     interface TransportSerialize
     {
-        string FileExtens { get;}
+        string name { get; }
+        string FileExtens { get; }
         void Serialize(Stream fs, Object itemList);
         Object DeSerialize(Stream fs);
     }
 
     class BinSerial : TransportSerialize
     {
-
+        public string name { get { return "Binary"; } }
         public string FileExtens { get { return ".dat"; } }
 
         public void Serialize(Stream fs, Object itemList)
@@ -25,7 +26,7 @@ namespace CRUD_OOP2
             BinaryFormatter formatter = new BinaryFormatter();
             // файл для записи сериализованного объекта
 
-                formatter.Serialize(fs, itemList);
+            formatter.Serialize(fs, itemList);
         }
 
         public Object DeSerialize(Stream fs)
@@ -33,8 +34,8 @@ namespace CRUD_OOP2
             Object Return_Object = null;
             // десериализация из файла
 
-                BinaryFormatter formatter = new BinaryFormatter();
-                Return_Object = (Object)formatter.Deserialize(fs);
+            BinaryFormatter formatter = new BinaryFormatter();
+            Return_Object = (Object)formatter.Deserialize(fs);
 
             return Return_Object;
         }
@@ -43,7 +44,7 @@ namespace CRUD_OOP2
 
     public class JsonSerial : TransportSerialize
     {
-
+        public string name { get { return "Json"; } }
         public string FileExtens { get { return ".json"; } }
 
         public void Serialize(Stream fs, Object itemList)
@@ -84,6 +85,7 @@ namespace CRUD_OOP2
 
     public class JcotSerial : TransportSerialize
     {
+        public string name { get { return "Jcot"; } }
         public string FileExtens { get { return ".jcot"; } }
 
         public void Serialize(Stream fs, Object itemList)
@@ -91,7 +93,7 @@ namespace CRUD_OOP2
             JcotFormatter formatter = new JcotFormatter();
             // файл для записи сериализованного объекта
 
-                formatter.Serialize(fs, itemList);
+            formatter.Serialize(fs, itemList);
         }
 
         public Object DeSerialize(Stream fs)
@@ -99,8 +101,8 @@ namespace CRUD_OOP2
             Object Return_Object = null;
             // десериализация из файла
 
-                JcotFormatter formatter = new JcotFormatter();
-                Return_Object = (Object)formatter.Deserialize(fs);
+            JcotFormatter formatter = new JcotFormatter();
+            Return_Object = (Object)formatter.Deserialize(fs);
             return Return_Object;
         }
 
