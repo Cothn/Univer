@@ -38,6 +38,8 @@
             this.LoadButt = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.plaginBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ListView1
@@ -128,12 +130,32 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // plaginBox
+            // 
+            this.plaginBox.FormattingEnabled = true;
+            this.plaginBox.Location = new System.Drawing.Point(336, 192);
+            this.plaginBox.Name = "plaginBox";
+            this.plaginBox.Size = new System.Drawing.Size(161, 21);
+            this.plaginBox.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(337, 173);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Plagin:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(505, 279);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.plaginBox);
             this.Controls.Add(this.LoadButt);
             this.Controls.Add(this.SaveButt);
             this.Controls.Add(this.SerializeBox);
@@ -149,6 +171,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -164,6 +187,8 @@
         private System.Windows.Forms.Button LoadButt;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox plaginBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

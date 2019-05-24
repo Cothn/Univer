@@ -68,6 +68,22 @@ namespace CRUD_OOP2
             ObjectBox.SelectedIndex = 0;
             ObjectBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ListRedraw(ListView1, ObjectList);
+
+            //плагины
+            string pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+            DirectoryInfo pluginDirect = new DirectoryInfo(pluginPath);
+            if (!pluginDirect.Exists)
+            { pluginDirect.Create(); }
+
+            //берем все dll
+            var pluginFiles = Directory.GetFiles(pluginPath, ".dll");
+            foreach(var file in pluginFiles)
+            {
+                //загружаем сборку
+                Assembly asm
+
+            }
+
         }
 
         private void Create_Click(object sender, EventArgs e)
@@ -245,6 +261,11 @@ namespace CRUD_OOP2
         }
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
