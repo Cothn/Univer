@@ -28,3 +28,5 @@ D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\Newt
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csprojAssemblyReference.cache
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.CoreCompileInputs.cache
 D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\obj\x86\Debug\WindowsFormsApplication1OOP.csproj.CopyComplete
+D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\CompressPlaginInterface.dll
+D:\RepositHub\Univer\Laba3(Serialize)\WindowsFormsApplication1OOP\bin\Debug\CompressPlaginInterface.pdb

@@ -56,20 +56,17 @@ namespace CRUD_OOP2
             });
 
             // файл для записи сериализованного объекта
-            using (StreamWriter Sw = new StreamWriter(fs))
-            {
-                Sw.Write(jsonObject);
-            }
+            StreamWriter Sw = new StreamWriter(fs);
+            Sw.Write(jsonObject);
+            Sw.Flush();
         }
         public Object DeSerialize(Stream fs)
         {
             string jsonObject = String.Empty;
 
             // десериализация из файла
-            using (StreamReader Sr = new StreamReader(fs))
-            {
-                jsonObject = Sr.ReadToEnd();
-            }
+            StreamReader Sr = new StreamReader(fs);
+            jsonObject = Sr.ReadToEnd();
 
             object Return_Object = JsonConvert.DeserializeObject<Object>(jsonObject, new JsonSerializerSettings
             {

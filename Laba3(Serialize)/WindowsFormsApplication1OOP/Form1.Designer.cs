@@ -38,6 +38,7 @@
             this.LoadButt = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.PluginsBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // ListView1
@@ -128,12 +129,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // PluginsBox
+            // 
+            this.PluginsBox.FormattingEnabled = true;
+            this.PluginsBox.Location = new System.Drawing.Point(336, 192);
+            this.PluginsBox.Name = "PluginsBox";
+            this.PluginsBox.Size = new System.Drawing.Size(161, 21);
+            this.PluginsBox.TabIndex = 8;
+            this.PluginsBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(505, 279);
+            this.Controls.Add(this.PluginsBox);
             this.Controls.Add(this.LoadButt);
             this.Controls.Add(this.SaveButt);
             this.Controls.Add(this.SerializeBox);
@@ -164,6 +175,7 @@
         private System.Windows.Forms.Button LoadButt;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox PluginsBox;
     }
 }
 

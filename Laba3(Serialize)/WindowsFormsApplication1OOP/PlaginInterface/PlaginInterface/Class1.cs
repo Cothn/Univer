@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlaginInterface
 {
-    public interface SerialPlagin
+    public interface IPlagin
     {
 
         void Shifr(Stream stream);
