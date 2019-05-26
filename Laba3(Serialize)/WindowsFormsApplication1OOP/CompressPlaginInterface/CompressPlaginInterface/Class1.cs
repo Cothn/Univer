@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO.Compression;
 using System.IO;
 
 namespace CompressPluginInterface
@@ -10,7 +11,7 @@ namespace CompressPluginInterface
     {
         string FileExtens { get; }
         void Shifr(Stream ReadStream, Stream WriteStream);
-        Stream DeShifr(Stream ReadStream);
+        void DeShifr(Stream ReadStream, Stream WriteStream);
     }
 
     public class NonePlugin : IPlugin
@@ -18,12 +19,12 @@ namespace CompressPluginInterface
         public string FileExtens { get { return ""; } }
         public override string ToString()
         {
-            return "none";
+            return "none plugin";
         }
         public void Shifr(Stream ReadStream, Stream WriteStream)
         { }
-        public Stream DeShifr(Stream ReadStream)
-        { return ReadStream; }
+        public void DeShifr(Stream ReadStream, Stream WriteStream)
+        { }
     
     }
 

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.IO;
+using System.IO.Compression;
 using CompressPluginInterface;
 
 namespace CRUD_OOP2
@@ -53,6 +54,7 @@ namespace CRUD_OOP2
             List<IPlugin> PluginsList = new List<IPlugin>();
             NonePlugin NPlugin = new NonePlugin();
             PluginsList.Add(NPlugin);
+            //PluginsList.Add(new GZipPlugin());
             //плагины
             string pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
             DirectoryInfo pluginDirect = new DirectoryInfo(pluginPath);
@@ -60,7 +62,7 @@ namespace CRUD_OOP2
             { pluginDirect.Create(); }
 
             //берем все dll
-            var pluginFiles = Directory.GetFiles(pluginPath, ".dll");
+            var pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
             foreach (var file in pluginFiles)
             {
                 //загружаем сборку
@@ -218,7 +220,7 @@ namespace CRUD_OOP2
             fileStream.Close();
             WriteStream.Close();
 
-            if (plugin.ToString() != "none")
+            if (plugin.ToString() != PluginsList[0].ToString())
             {
                 File.Delete(filename + ".temp");
             }
@@ -236,19 +238,77 @@ namespace CRUD_OOP2
             TransportSerialize TSerial = SerialList[SerializeBox.SelectedIndex];
             IPlugin plugin = (IPlugin)PluginsBox.SelectedItem;
 
-            openFileDialog1.Filter = SerialList[SerializeBox.SelectedIndex] + " files(*" + TSerial.FileExtens + plugin.FileExtens + ") | *" + TSerial.FileExtens + plugin.FileExtens + "|All files(*.*)|*.*";
+            openFileDialog1.Filter = plugin.ToString() + " " + SerializeBox.SelectedItem + " files(*" + TSerial.FileExtens + plugin.FileExtens + ") | *" + TSerial.FileExtens + plugin.FileExtens + "|All files(*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            // получаем выбранный файл
+
             string filename = openFileDialog1.FileName;
+            bool NoPlugin = false;
+
+            if (openFileDialog1.FilterIndex > 1)
+            {
+                NoPlugin = true;
+                TSerial = null;
+                foreach (IPlugin plug in PluginsList)
+                {
+
+                    if (filename.EndsWith(plug.FileExtens) && plug.FileExtens != "")
+                    {
+                        plugin = plug;
+                        NoPlugin = false;
+                        foreach (var serial in SerialList)
+                        {
+                            if (filename.LastIndexOf(serial.FileExtens) > 0)
+                            {
+                                TSerial = serial;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if (NoPlugin)
+                {
+                    foreach (var serial in SerialList)
+                    {
+                        if (filename.EndsWith(serial.FileExtens))
+                        {
+                            plugin = PluginsList[0];
+                            TSerial = serial;
+                            NoPlugin = false;
+                            break;
+                        }
+                    }
+
+              
+                }
+            }
+            // получаем выбранный файл
             //string fileExtens = null;
-
-
-            FileStream fs = new FileStream(filename, FileMode.OpenOrCreate);
-            ObjectList = (List<Object>)TSerial.DeSerialize(plugin.DeShifr(fs));
-            fs.Close();
-            ListRedraw(ListView1, ObjectList);
-            MessageBox.Show("Файл загружен");
+            if (!NoPlugin && TSerial != null)
+            {
+                FileStream fs = new FileStream(filename, FileMode.OpenOrCreate);
+                FileStream TempStream = new FileStream(filename + ".temp", FileMode.Create);
+                plugin.DeShifr(fs, TempStream);
+                TempStream.Seek(0, SeekOrigin.Begin);
+                if (plugin.ToString() != PluginsList[0].ToString())
+                {
+                    ObjectList = (List<Object>)TSerial.DeSerialize(TempStream);
+                }
+                else
+                {
+                    ObjectList = (List<Object>)TSerial.DeSerialize(fs);
+                }
+                fs.Close();
+                TempStream.Close();
+                File.Delete(filename + ".temp");
+                ListRedraw(ListView1, ObjectList);
+                MessageBox.Show("Файл загружен");
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат файла");
+            }
         }
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
