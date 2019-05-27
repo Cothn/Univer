@@ -22,9 +22,9 @@ namespace CompressPluginInterface
             return "none plugin";
         }
         public void Shifr(Stream ReadStream, Stream WriteStream)
-        { }
+        { ReadStream.CopyTo(WriteStream); }
         public void DeShifr(Stream ReadStream, Stream WriteStream)
-        { }
+        { ReadStream.CopyTo(WriteStream); }
     
     }
 

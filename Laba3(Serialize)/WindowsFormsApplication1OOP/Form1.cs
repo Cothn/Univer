@@ -58,8 +58,8 @@ namespace CRUD_OOP2
             //плагины
             string pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
             DirectoryInfo pluginDirect = new DirectoryInfo(pluginPath);
-            if (!pluginDirect.Exists)
-            { pluginDirect.Create(); }
+            //if (!pluginDirect.Exists)
+            //{ pluginDirect.Create(); }
 
             //берем все dll
             var pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
@@ -67,7 +67,7 @@ namespace CRUD_OOP2
             {
                 //загружаем сборку
                 Assembly asm = Assembly.LoadFrom(file);
-                //Ищем типы
+                //Ищем типы  //type of plugin is AssignableFrom
                 var types = asm.GetTypes().Where(t => t.GetInterfaces().Where(j => j.FullName == typeof(IPlugin).FullName).Any());
 
 
@@ -209,26 +209,27 @@ namespace CRUD_OOP2
                 return;
             // получаем выбранный файл
             string filename = saveFileDialog1.FileName;
-            FileStream fileStream = new FileStream(filename + ".temp", FileMode.Create);
-            TSerial.Serialize(fileStream, ObjectList);
-            fileStream.Flush();
+            //FileStream fileStream = new FileStream(filename + ".temp", FileMode.Create);//memoryStream
+            MemoryStream memStream = new MemoryStream();
+            TSerial.Serialize(memStream, ObjectList);
+            //fileStream.Flush();
 
             //Обработка плагином
-            fileStream.Seek(0, SeekOrigin.Begin);
+            memStream.Seek(0, SeekOrigin.Begin);
             FileStream WriteStream = new FileStream(filename, FileMode.Create);
-            plugin.Shifr(fileStream, WriteStream);
-            fileStream.Close();
+            plugin.Shifr(memStream, WriteStream);
+            memStream.Close();
             WriteStream.Close();
 
-            if (plugin.ToString() != PluginsList[0].ToString())
-            {
-                File.Delete(filename + ".temp");
-            }
-            else
-            {
-                File.Delete(filename);
-                File.Move(filename + ".temp", filename);
-            }
+            //if (plugin.ToString() != PluginsList[0].ToString())
+            //{
+            //    File.Delete(filename + ".temp");
+            //}
+            //else
+            //{
+            //    File.Delete(filename);
+            //    File.Move(filename + ".temp", filename);
+            //}
 
             MessageBox.Show("Файл сохранен");
         }
@@ -288,19 +289,19 @@ namespace CRUD_OOP2
             if (!NoPlugin && TSerial != null)
             {
                 FileStream fs = new FileStream(filename, FileMode.OpenOrCreate);
-                FileStream TempStream = new FileStream(filename + ".temp", FileMode.Create);
-                plugin.DeShifr(fs, TempStream);
-                TempStream.Seek(0, SeekOrigin.Begin);
-                if (plugin.ToString() != PluginsList[0].ToString())
-                {
-                    ObjectList = (List<Object>)TSerial.DeSerialize(TempStream);
-                }
-                else
-                {
-                    ObjectList = (List<Object>)TSerial.DeSerialize(fs);
-                }
+                MemoryStream memStream = new MemoryStream();
+                plugin.DeShifr(fs, memStream);
+                memStream.Seek(0, SeekOrigin.Begin);
+                //if (plugin.ToString() != PluginsList[0].ToString())
+                //{
+                    ObjectList = (List<Object>)TSerial.DeSerialize(memStream);
+                //}
+                //else
+                //{
+                //    ObjectList = (List<Object>)TSerial.DeSerialize(fs);
+                //}
                 fs.Close();
-                TempStream.Close();
+                memStream.Close();
                 File.Delete(filename + ".temp");
                 ListRedraw(ListView1, ObjectList);
                 MessageBox.Show("Файл загружен");
