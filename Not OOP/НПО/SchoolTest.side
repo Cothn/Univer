@@ -1,0 +1,199 @@
+{
+  "id": "5ed217cc-a275-48d3-800f-1f10b1db1371",
+  "version": "2.0",
+  "name": "SchoolTest",
+  "url": "https://senica.minsk-roo.gov.by/",
+  "tests": [{
+    "id": "c13a8c92-a2a1-4d43-ac7d-0dd4f50ad379",
+    "name": "ClickTest",
+    "commands": [{
+      "id": "d155e055-3325-453d-a8f3-cceedfa26e50",
+      "comment": "",
+      "command": "open",
+      "target": "https://senica.minsk-roo.gov.by/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c7d99018-2c05-4314-9006-3d08d109d9c3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1174x691",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c0059cd4-2919-44e0-b33e-8069389be051",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Одно окно",
+      "targets": [
+        ["linkText=Одно окно", "linkText"],
+        ["css=.parent:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Одно окно')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/одно-окно')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Одно окно')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a54b799d-575d-4c35-8312-cb8accc5bf20",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Об учреждении",
+      "targets": [
+        ["linkText=Об учреждении", "linkText"],
+        ["css=.parent:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Об учреждении')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/об-учреждении')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Об учреждении')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e39fad81-f0bd-4ac4-92eb-099b5a817bfd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Учительская",
+      "targets": [
+        ["linkText=Учительская", "linkText"],
+        ["css=.parent:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Учительская')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/учительская')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Учительская')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "907bcf9e-d168-4821-a99d-aa4e35fe7940",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Учащимся",
+      "targets": [
+        ["linkText=Учащимся", "linkText"],
+        ["css=.parent:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Учащимся')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/учащимся')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Учащимся')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3956bab0-29b3-4d9a-9d09-1c4e7aeed8c7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Родителям",
+      "targets": [
+        ["linkText=Родителям", "linkText"],
+        ["css=.level_0 > .parent:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Родителям')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/родителям')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Родителям')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "51e282a4-e2c3-4dfb-aa07-600045cae897",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Контакты",
+      "targets": [
+        ["linkText=Контакты", "linkText"],
+        ["css=.level_0 > li:nth-child(7) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Контакты')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[7]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/контакты')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Контакты')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "49de3d7b-71ec-40c2-a26c-9366d58ed5d8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Фотогалерея",
+      "targets": [
+        ["linkText=Фотогалерея", "linkText"],
+        ["css=.level_0 > .parent:nth-child(8) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Фотогалерея')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[8]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/фотогалерея')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[8]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Фотогалерея')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6627a590-7bac-46d5-aef0-577f3410249b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Сервисы",
+      "targets": [
+        ["linkText=Сервисы", "linkText"],
+        ["css=.parent:nth-child(9) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Сервисы')]", "xpath:link"],
+        ["xpath=//nav[@id='main_menu']/div[2]/ul/li[9]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/сервисы')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[9]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Сервисы')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a530d551-3f32-42b0-aace-a23bb11137db",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Электронное обращение",
+      "targets": [
+        ["linkText=Электронное обращение", "linkText"],
+        ["css=.level_0:nth-child(2) > li:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Электронное обращение')])[2]", "xpath:link"],
+        ["xpath=//div[@id='footer']/div/div[2]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/одно-окно/электронное-обращение')])[2]", "xpath:href"],
+        ["xpath=//div[3]/div/div[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "14881d1e-5710-4282-988d-9030a051ca74",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Карта сайта",
+      "targets": [
+        ["linkText=Карта сайта", "linkText"],
+        ["css=.level_0:nth-child(2) > li:nth-child(2) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Карта сайта')])[2]", "xpath:link"],
+        ["xpath=//div[@id='footer']/div/div[2]/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/сервисы/карта-сайта')])[2]", "xpath:href"],
+        ["xpath=//div/div[2]/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e12e122b-f409-4077-8807-8ef1d325eda2",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1:nth-child(2)",
+      "targets": [
+        ["css=h1:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='header_caption']/a/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Сеницкая средняя школа имени Я.Купалы')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2d0859df-4e3b-4aae-8fa2-eff950a1ba84",
+    "name": "FindTest",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "4144efcb-65c4-45a7-a1af-745cf9b23fe0",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://senica.minsk-roo.gov.by/"],
+  "plugins": []
+}
