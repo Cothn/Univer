@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="NavigClickTest" key="{C129B890-DCAB-445C-8637-3F5116CFA6ED}" path="NavigClickTest.js" />
+		<child name="SettingTest_DataDriver" key="{EF67CB8A-18D7-49AB-97E3-D2428B22A7B8}" path="SettingTest_DataDriver.js" />
+		<child name="NavigKeyTest" key="{CCF8B92C-591F-4DD2-AE4C-75FAC49F3B39}" path="NavigKeyTest.js" />
+		<child name="StylesheetTest" key="{766E24B3-EBEC-4C11-B9A8-C506B4F16E7B}" path="StylesheetTest.js" />
+	</children>
+</Root>

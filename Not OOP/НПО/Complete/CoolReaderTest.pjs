@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="14.0" key="{CF68449C-8848-45AE-B143-0DC90411BC71}">
+	<children>
+		<child name="CoolReaderTesting" key="{75F4DD2D-0EB6-4014-9509-422CAACEBEB0}" path="TestProject1\CoolReaderTesting.mds" />
+	</children>
+	<testItems key="{0FCDEA93-10B3-4123-B2A7-DB5121C1DE3C}">
+		<children>
+			<testItem key="{75F4DD2D-0EB6-4014-9509-422CAACEBEB0}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{B4F30237-8E3B-47AE-A15C-FD43266EAD61}">
+		<data Version="3" />
+	</variables>
+	<analysis key="{16DAEBD3-AAD1-4FFF-9979-FC6A7ABC410C}" />
+	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
+		<data />
+	</scc>
+	<extender key="{1A3FC97E-9A66-4716-B166-35D10B4146E0}">
+		<CrossBrowserTesting Enable="False" />
+	</extender>
+</Root>

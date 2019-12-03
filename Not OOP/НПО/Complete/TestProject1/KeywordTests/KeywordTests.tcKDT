@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9576DAFD-0ADD-41A8-9897-C72F150AF6BB}" version="14.0">
+	<children>
+		<child name="MenyPanelTest" key="{D54D400C-8ED9-43C9-AEC4-2A822B27B4DF}" path="MenyPanelTest.tcKDTest" />
+		<child name="FileMenyTest" key="{3E6951DB-6062-4637-8D93-53027FD8938D}" path="FileMenyTest.tcKDTest" />
+		<child name="HelpTest" key="{EE16F83A-FB27-4B5B-B2C1-6671A602B1B7}" path="HelpTest.tcKDTest" />
+		<child name="VievKeyTest" key="{EF023401-1D23-45F1-927F-82669366F6B1}" path="VievKeyTest.tcKDTest" />
+	</children>
+</Root>

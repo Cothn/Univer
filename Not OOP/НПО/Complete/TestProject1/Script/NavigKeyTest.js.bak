@@ -1,0 +1,12 @@
+﻿function Test1()
+{
+  TestedApps.cr3.Run();
+  let cr3 = Aliases.cr32;
+
+  var myFile = aqFile.OpenTextFile("D:\\RepositHub\\Complete\\TestData\\NavigTestKey.txt", aqFile.faRead, aqFile.ctUTF8);
+  while(!myFile.IsEndOfFile()){
+    var s = myFile.readLine();
+    cr3.MainWindowClass.centralWidget.view.Keys(s);
+  }
+  mainWindow.Close();
+}

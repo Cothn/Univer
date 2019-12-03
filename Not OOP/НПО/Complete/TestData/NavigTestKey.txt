@@ -1,0 +1,11 @@
+[PageUp]
+[PageDown]
+[Down]
+[Up]
+[Home]
+[End]
+~[Down]
+~[Up]
+[BS]
++
+-
