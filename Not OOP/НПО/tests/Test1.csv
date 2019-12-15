@@ -1,0 +1,86 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1576311601045,1383,HTTP Request,200,OK,Children 1-9,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1354,0,1127
+1576311601048,1551,HTTP Request,200,OK,Children 1-10,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1537,0,1123
+1576311601085,1567,HTTP Request,200,OK,Children 1-18,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1548,0,1093
+1576311601046,1632,HTTP Request,200,OK,Children 1-12,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1606,0,1126
+1576311601178,1516,HTTP Request,200,OK,Children 1-17,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1499,0,997
+1576311601190,1514,HTTP Request,200,OK,Children 1-22,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1505,0,985
+1576311601046,1680,HTTP Request,200,OK,Children 1-13,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1657,0,1131
+1576311601045,1761,HTTP Request,200,OK,Children 1-8,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1685,0,1133
+1576311601048,1848,HTTP Request,200,OK,Children 1-6,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1759,0,1127
+1576311601047,2425,HTTP Request,200,OK,Children 1-7,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2409,0,1140
+1576311601288,2200,HTTP Request,200,OK,Children 1-24,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2175,0,906
+1576311601047,2481,HTTP Request,200,OK,Children 1-11,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2441,0,1137
+1576311601201,2339,HTTP Request,200,OK,Children 1-20,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2306,0,986
+1576311601346,2210,HTTP Request,200,OK,Children 1-26,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2198,0,848
+1576311601229,2349,HTTP Request,200,OK,Children 1-23,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2320,0,965
+1576311601049,2554,HTTP Request,200,OK,Children 1-3,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2537,0,1145
+1576311602429,1272,HTTP Request,200,OK,Children 1-9,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1238,0,0
+1576311602695,1087,HTTP Request,200,OK,Children 1-17,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1073,0,0
+1576311602726,1094,HTTP Request,200,OK,Children 1-13,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1082,0,0
+1576311602602,1242,HTTP Request,200,OK,Children 1-10,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1229,0,0
+1576311601046,2798,HTTP Request,200,OK,Children 1-14,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2560,0,1156
+1576311601046,2819,HTTP Request,200,OK,Children 1-2,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2579,0,1172
+1576311602806,1060,HTTP Request,200,OK,Children 1-8,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1047,0,0
+1576311602897,996,HTTP Request,200,OK,Children 1-6,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,985,0,0
+1576311602704,1220,HTTP Request,200,OK,Children 1-22,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1211,0,0
+1576311602653,1311,HTTP Request,200,OK,Children 1-18,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1287,0,0
+1576311602678,1305,HTTP Request,200,OK,Children 1-12,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1293,0,0
+1576311601347,2647,HTTP Request,200,OK,Children 1-27,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2638,0,880
+1576311601166,2841,HTTP Request,200,OK,Children 1-15,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2827,0,1061
+1576311603472,836,HTTP Request,200,OK,Children 1-7,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,783,0,392
+1576311603540,788,HTTP Request,200,OK,Children 1-20,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,770,0,321
+1576311603528,817,HTTP Request,200,OK,Children 1-11,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,806,0,336
+1576311603556,809,HTTP Request,200,OK,Children 1-26,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,791,0,343
+1576311603488,883,HTTP Request,200,OK,Children 1-24,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,876,0,377
+1576311603578,905,HTTP Request,200,OK,Children 1-23,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,890,0,432
+1576311603925,574,HTTP Request,200,OK,Children 1-22,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,546,0,164
+1576311603845,677,HTTP Request,200,OK,Children 1-14,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,627,0,209
+1576311603820,1399,HTTP Request,200,OK,Children 1-13,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1356,0,239
+1576311603844,1396,HTTP Request,200,OK,Children 1-10,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1378,0,245
+1576311603983,1295,HTTP Request,200,OK,Children 1-12,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1263,0,106
+1576311603865,1473,HTTP Request,200,OK,Children 1-2,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1420,0,224
+1576311604007,1386,HTTP Request,200,OK,Children 1-15,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1335,0,82
+1576311603964,1454,HTTP Request,200,OK,Children 1-18,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1439,0,125
+1576311603994,1465,HTTP Request,200,OK,Children 1-27,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1447,0,95
+1576311604483,1153,HTTP Request,200,OK,Children 1-23,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1119,0,0
+1576311604366,1292,HTTP Request,200,OK,Children 1-26,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1283,0,0
+1576311603893,1807,HTTP Request,200,OK,Children 1-6,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1773,0,196
+1576311603782,1975,HTTP Request,200,OK,Children 1-17,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1918,0,269
+1576311603867,1938,HTTP Request,200,OK,Children 1-8,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1892,0,186
+1576311603604,2576,HTTP Request,200,OK,Children 1-3,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2482,0,414
+1576311601190,5093,HTTP Request,200,OK,Children 1-21,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,4642,0,3335
+1576311604523,1839,HTTP Request,200,OK,Children 1-14,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,1822,0,0
+1576311604328,2115,HTTP Request,200,OK,Children 1-20,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2079,0,0
+1576311604371,2201,HTTP Request,200,OK,Children 1-24,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2136,0,0
+1576311604500,2231,HTTP Request,200,OK,Children 1-22,text,true,,32716,176,30,30,https://senica.minsk-roo.gov.by/учащимся,2221,0,0
+1576311603701,3532,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-9,text,false,,2922,0,30,30,https://senica.minsk-roo.gov.by/учащимся,0,0,344
+1576311605658,1642,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-26,text,false,,2800,0,29,29,https://senica.minsk-roo.gov.by/учащимся,0,0,1642
+1576311605393,1909,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-15,text,false,,2859,0,28,28,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311605278,2027,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-12,text,false,,2859,0,27,27,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311605636,1713,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-23,text,false,,2800,0,26,26,https://senica.minsk-roo.gov.by/учащимся,0,0,1712
+1576311605459,1901,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-27,text,false,,2859,0,25,25,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311605700,1673,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-6,text,false,,2859,0,24,24,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311606284,1110,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-21,text,false,,2581,0,23,23,https://senica.minsk-roo.gov.by/учащимся,0,0,1110
+1576311605418,1982,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-18,text,false,,2859,0,22,22,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311606731,676,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-22,text,false,,2581,0,21,21,https://senica.minsk-roo.gov.by/учащимся,0,0,675
+1576311606572,838,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-24,text,false,,2581,0,20,20,https://senica.minsk-roo.gov.by/учащимся,0,0,838
+1576311604345,3070,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-11,text,false,,2859,0,19,19,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311601534,5889,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-30,text,false,,2859,0,18,18,https://senica.minsk-roo.gov.by/учащимся,0,0,3395
+1576311601467,5962,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-29,text,false,,2922,0,17,17,https://senica.minsk-roo.gov.by/учащимся,0,0,3217
+1576311605240,2192,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-10,text,false,,2859,0,16,16,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311601465,5971,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-25,text,false,,2922,0,15,15,https://senica.minsk-roo.gov.by/учащимся,0,0,3202
+1576311606443,995,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-20,text,false,,2581,0,14,14,https://senica.minsk-roo.gov.by/учащимся,0,0,995
+1576311605757,1683,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-17,text,false,,2859,0,13,13,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311604308,3176,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-7,text,false,,2922,0,12,12,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311601093,6401,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-19,text,false,,2922,0,11,11,https://senica.minsk-roo.gov.by/учащимся,0,0,3479
+1576311601480,6044,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-28,text,false,,2922,0,10,10,https://senica.minsk-roo.gov.by/учащимся,0,0,3173
+1576311601047,6483,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-1,text,false,,2922,0,9,9,https://senica.minsk-roo.gov.by/учащимся,0,0,3476
+1576311601046,6488,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-4,text,false,,2922,0,8,8,https://senica.minsk-roo.gov.by/учащимся,0,0,3548
+1576311605219,2322,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-13,text,false,,2859,0,7,7,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311605338,2206,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-2,text,false,,2859,0,6,6,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311606362,1218,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-14,text,false,,2581,0,5,5,https://senica.minsk-roo.gov.by/учащимся,0,0,1218
+1576311606180,1404,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket operation on nonsocket: connect,Children 1-3,text,false,,2581,0,4,4,https://senica.minsk-roo.gov.by/учащимся,0,0,1404
+1576311605805,1797,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-8,text,false,,2859,0,3,3,https://senica.minsk-roo.gov.by/учащимся,0,0,0
+1576311601079,6542,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-16,text,false,,2012,0,2,2,https://senica.minsk-roo.gov.by/учащимся,5106,0,3445
+1576311601047,6586,HTTP Request,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Children 1-5,text,false,,2922,0,1,1,https://senica.minsk-roo.gov.by/учащимся,0,0,3478
